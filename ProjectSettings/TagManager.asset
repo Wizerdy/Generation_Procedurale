@@ -3,21 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Door
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - NoCollision
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Walls
+  - Enemies
+  - Props
+  - Spikes
+  - Bullets
+  - Rooms
   - 
   - 
   - 
@@ -40,4 +41,22 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 1848555545
+    locked: 0
+  - name: Spikes
+    uniqueID: 3229714197
+    locked: 0
+  - name: Enemies
+    uniqueID: 3880379175
+    locked: 0
+  - name: Walls
+    uniqueID: 3288026613
+    locked: 0
+  - name: Player
+    uniqueID: 1028839893
+    locked: 0
+  - name: Props
+    uniqueID: 1517254871
     locked: 0

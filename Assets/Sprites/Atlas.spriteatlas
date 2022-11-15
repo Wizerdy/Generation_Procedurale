@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 48d6333b6116ff44d81c30c7e8310a0a, type: 3}
+    - {fileID: 102900000, guid: 48d6333b6116ff44d81c30c7e8310a0a, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: cf315a12087b67c4dab44aecb3d72b9d, type: 3}
+  - {fileID: 21300000, guid: f3ef024444d630c48a84217d21dccdbc, type: 3}
+  - {fileID: 877609874, guid: f0361519cb1e22347a4a01a025eb231a, type: 3}
+  - {fileID: 2025124053, guid: f0361519cb1e22347a4a01a025eb231a, type: 3}
+  - {fileID: 539616677, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
+  - {fileID: -526778784, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
+  - {fileID: -802962152, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
+  - {fileID: -1912284945, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
+  - {fileID: 726775630, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
+  - {fileID: -295721097, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
+  - {fileID: -873325267, guid: eb4b67dffc445c246a8b3a050414235b, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Heart
+  - PlaceHolder
+  - props_0
+  - props_1
+  - tilemapFloor_4
+  - tilemapFloor_5
+  - tilemapFloor_2
+  - tilemapFloor_3
+  - tilemapFloor_0
+  - tilemapFloor_1
+  - Triangle_0
+  m_RenderDataMap: {}
+  m_Tag: Atlas
+  m_IsVariant: 0
