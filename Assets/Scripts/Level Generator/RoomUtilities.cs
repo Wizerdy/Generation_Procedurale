@@ -6,7 +6,7 @@ public enum Gate {
     NONE = 0, UP = 1, RIGHT = 2, DOWN = 4, LEFT = 8
 }
 
-public struct Room {
+public struct RoomData {
     public int4 gates;
 }
 
@@ -16,8 +16,13 @@ public class int4 {
     private BitArray value = new BitArray(4);
 
     public uint Value => value.ConvertUInt();
+    public bool this[int index] => value[index];
 
     #region Constructors
+
+    public int4() {
+        value = new BitArray(4, false);
+    }
 
     public int4(int4 copy) {
         value = (BitArray)copy.value.Clone();
@@ -47,15 +52,14 @@ public class int4 {
     public bool Contains(Gate gate) {
         BitArray array = ((int)gate).ConvertBitArray();
         array.Length = 4;
-        array = array.And(value);
 
-        for (int i = 0; i < array.Length; i++) {
-            if (array[0])
-                return true;
-            array = array.RightShift(1);
+        for (int i = 0; i < value.Length; ++i) {
+            if (array[i] != value[i]) {
+                return false;
+            }
         }
 
-        return false;
+        return true;
     }
 
     #region Add
