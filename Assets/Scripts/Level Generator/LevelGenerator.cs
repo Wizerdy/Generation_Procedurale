@@ -9,6 +9,8 @@ public class LevelGenerator : MonoBehaviour {
     public Dictionary<Vector2Int, RoomData> GenerateFloor(Vector2Int startPosition) {
         Dictionary<Vector2Int, RoomData> output = new Dictionary<Vector2Int, RoomData>();
 
+
+
         RoomData start = _startingRooms[Random.Range(0, _startingRooms.Count)];
         start.gates = 1;
         output.Add(startPosition, _startingRooms[Random.Range(0, _startingRooms.Count)]);
