@@ -9,6 +9,7 @@ public enum Gate {
 public struct RoomData {
     public Vector2 Size;
     public int Doors;
+    public int4 gates;
 }
 
 [System.Serializable]
