@@ -8,9 +8,20 @@ public class BitDebugger : MonoBehaviour {
 
     void OnValidate() {
         Debug.Log("Processing");
-        int4 first = new int4(_first);
-        int4 second = new int4(_second);
-        int4 result = first - second;
+        bint4 first = new bint4(_first);
+        bint4 second = new bint4(_second);
+        bint4 result = first - second;
         Debug.Log(first + " - " + second + " = " + result);
+        // 1000 - 0100 => 0100
+        // 1000 - 0100 => 1000 // 1000 ^ 0100 => 
+        // 1000 - 1100 => 0000
+        // 1000 + 1100 => 1100
+
+        // >> 0011 (3) => 0001
+        // >> 1100 (12) => 0110 (6)
+        // << 0011 => 0110
+
+        // int => -1 000 0000 0000 0000 0000 0000 0000 0000 -3600
+        // float => 0 000 0000 0000 0000 0000 0000 0000 0000 0.657 657x10^-3
     }
 }

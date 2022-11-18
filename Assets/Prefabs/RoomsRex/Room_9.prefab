@@ -87,5 +87,14 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[237].second.m_TileSpriteIndex
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6814802751923232135, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}
+      propertyPath: gates.value.value.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814802751923232135, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}
+      propertyPath: gates.value.value.Array.data[3]
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}

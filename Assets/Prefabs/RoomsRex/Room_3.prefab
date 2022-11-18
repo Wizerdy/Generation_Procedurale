@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2983518035799732508, guid: 3b68f65e0738f374fba0a38fb408e8ad, type: 3}
+      propertyPath: gates.value.value.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3121293518068407841, guid: 3b68f65e0738f374fba0a38fb408e8ad, type: 3}
       propertyPath: m_Name
       value: Room_3
@@ -79,5 +83,6 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[237].second.m_TileSpriteIndex
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 3b68f65e0738f374fba0a38fb408e8ad, type: 3}
