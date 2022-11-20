@@ -51,28 +51,36 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 4c9c89301cb41314cafa02dc857634b0, type: 3}
   - {fileID: 21300000, guid: cf315a12087b67c4dab44aecb3d72b9d, type: 3}
   - {fileID: 21300000, guid: f3ef024444d630c48a84217d21dccdbc, type: 3}
   - {fileID: 877609874, guid: f0361519cb1e22347a4a01a025eb231a, type: 3}
   - {fileID: 2025124053, guid: f0361519cb1e22347a4a01a025eb231a, type: 3}
+  - {fileID: 21300000, guid: f105436ac8ca6794c8dcdb6aefe85f1c, type: 3}
   - {fileID: 539616677, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
   - {fileID: -526778784, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
   - {fileID: -802962152, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
   - {fileID: -1912284945, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
   - {fileID: 726775630, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
   - {fileID: -295721097, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
+  - {fileID: 21300000, guid: 06e2409e568b5fc43b0f6dcebfcf71f4, type: 3}
+  - {fileID: 21300000, guid: 8fe3ff3fa4412cf48a2dd58add971bce, type: 3}
   - {fileID: -873325267, guid: eb4b67dffc445c246a8b3a050414235b, type: 3}
   m_PackedSpriteNamesToIndex:
+  - TankCannon
   - Heart
   - PlaceHolder
   - props_0
   - props_1
+  - Bullet 1
   - tilemapFloor_4
   - tilemapFloor_5
   - tilemapFloor_2
   - tilemapFloor_3
   - tilemapFloor_0
   - tilemapFloor_1
+  - TankBody
+  - Bullet
   - Triangle_0
   m_RenderDataMap: {}
   m_Tag: Atlas

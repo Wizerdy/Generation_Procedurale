@@ -21,18 +21,22 @@ public class PlayerController : MonoBehaviour
         life.onDie = OnDie();
     }
 
-    public void OnMove(InputAction.CallbackContext input)
+    public void OnMove(InputAction.CallbackContext input) 
     {
-        movement.SetDirection(input.ReadValue<Vector2>());
+        var inputDirection = input.ReadValue<Vector2>();
+        movement.SetDirection(inputDirection);
+        if (input.performed) {
+            transform.up = inputDirection;
+        }
     }
 
     public void OnShoot(InputAction.CallbackContext input)
     {
         if (input.performed)
         {
-            var inputDirection = input.ReadValue<Vector2>();
-            if (inputDirection.sqrMagnitude <= 1)
-                transform.up = inputDirection;
+            //var inputDirection = input.ReadValue<Vector2>();
+            //if (inputDirection.sqrMagnitude <= 1)
+            //    transform.up = inputDirection;
             foreach (var shooter in shooters)
             {
                 shooter.StartShooting();
