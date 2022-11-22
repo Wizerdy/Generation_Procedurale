@@ -288,15 +288,16 @@ MonoBehaviour:
   - {fileID: 2978377285879268653, guid: 8d558bc97341ae7468955af3ad8e036a, type: 3}
   _startingRooms:
   - {fileID: 2978377285879268653, guid: 8d558bc97341ae7468955af3ad8e036a, type: 3}
-  _roomSize: {x: 4, y: 2}
-  _maxIteration: 1000
+  _seed: jforemds
+  _maxIteration: 10000
   _floorSize: 20
-  _oneDoor: 0.039
-  _twoDoor: 0.915
-  _threeDoor: 0.324
-  _fourDoor: 0
-  _wayColor: {r: 0.21246397, g: 0.8679245, b: 0.020469915, a: 1}
-  _wallColor: {r: 0.46431115, g: 0.6981132, b: 0.49823028, a: 0.54509807}
+  _oneDoor: 0
+  _twoDoor: 1
+  _threeDoor: 0.05
+  _fourDoor: 0.05
+  _roomSize: {x: 4, y: 2}
+  _wayColor: {r: 0.0039215684, g: 1, b: 0.09538529, a: 1}
+  _wallColor: {r: 1, g: 1, b: 1, a: 0.039215688}
 --- !u!4 &1501809627
 Transform:
   m_ObjectHideFlags: 0

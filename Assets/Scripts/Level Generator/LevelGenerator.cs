@@ -6,9 +6,9 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour {
     [SerializeField] List<RoomData> _rooms;
     [SerializeField] List<RoomData> _startingRooms;
-    [SerializeField] Vector2 _roomSize = new Vector2Int(4, 2);
 
     [Header("Weights")]
+    [SerializeField] string _seed = "";
     [SerializeField] int _maxIteration = 200;
     [SerializeField] int _floorSize = 20;
     [SerializeField, Range(0f, 1f)] float _oneDoor = 0.25f;
@@ -17,19 +17,41 @@ public class LevelGenerator : MonoBehaviour {
     [SerializeField, Range(0f, 1f)] float _fourDoor = 0.25f;
 
     [Header("System")]
+    [SerializeField] Vector2 _roomSize = new Vector2Int(4, 2);
     [SerializeField] Color _wayColor = Color.red;
     [SerializeField] Color _wallColor = Color.yellow;
 
+    Dictionary<Vector2Int, RoomData> _floor;
+    Vector2Int _startPosition;
+
+    int _currentSeed = 0;
+
     private void Start() {
-        //GenerateFloor(Vector2Int.zero);
-        StartCoroutine(GenerateFloor(Vector2Int.zero));
+        _startPosition = Vector2Int.zero;
+        _floor = GenerateFloor(Vector2Int.zero);
+        //StartCoroutine(GenerateFloor(Vector2Int.zero));
+    }
+
+    public void GenerateTheFloor() {
+        _startPosition = Vector2Int.zero;
+        _floor = GenerateFloor(Vector2Int.zero);
     }
 
     //public Dictionary<Vector2Int, RoomData> GenerateFloor(Vector2Int startPosition) {
-    public IEnumerator GenerateFloor(Vector2Int startPosition) {
+    public Dictionary<Vector2Int, RoomData> GenerateFloor(Vector2Int startPosition) {
+        if (_seed == "") {
+            _currentSeed = Random.Range(0, int.MaxValue);
+        } else {
+            try {
+                System.Int32.TryParse(_seed, out _currentSeed);
+            } catch (System.FormatException e) {
+                _currentSeed = _seed.ToCharArray().Aggregate((char char1, char char2) => (char)((int)char1 + (int)char2));
+            }
+        }
+        Random.InitState(_currentSeed);
+
         Dictionary<Vector2Int, RoomData> output = new Dictionary<Vector2Int, RoomData>();
         List<(Vector2Int, Gate)> toSpawn = new List<(Vector2Int, Gate)>();
-
 
         int open = 0;
 
@@ -40,13 +62,9 @@ public class LevelGenerator : MonoBehaviour {
 
         open += AddRoom(ref output, ref toSpawn, startPosition, startRoom);
 
-        //AddToSpawn(in output, ref toSpawn, currentPosition, startRoom); ;
-        Debug.Log("First : " + startRoom.name + " g:" + startRoom.gates + " td:" + toSpawn.Count);
-        DrawRoom(startRoom, startPosition, Color.red, Color.yellow, 1000f);
-        //Gates gates = AskNeighborhood(in output, currentPosition + Vector2Int.up);
-        //Debug.Log(gates + " start : " + startRoom.gates);
-        //Debug.Log((gates.Value & startRoom.gates.Value) == 0);
-        //return output;
+        //Debug.Log("First : " + startRoom.name + " g:" + startRoom.gates + " td:" + toSpawn.Count);
+        //DrawRoom(startRoom, startPosition, Color.red, Color.yellow, 1000f);
+
         int debugCount = 0;
 
         while (toSpawn.Count > 0 && debugCount < _maxIteration) {
@@ -79,27 +97,22 @@ public class LevelGenerator : MonoBehaviour {
 
             --open;
             open += AddRoom(ref output, ref toSpawn, currentPosition, nextRoom);
-            //AddToSpawn(in output, ref toSpawn, currentPosition, nextRoom);
-            Debug.Log(nextRoom.name + " cg:" + nextRoom.gates + " nd:" + nextDoors + " mf:" + meanFriends + " nr:" + nextRooms.Count + " td:" + toSpawn.Count + " op:" + open + " lo:" + debugCount);
-            string name = "{ ";
-            for (int i = 0; i < toSpawn.Count; i++) {
-                name += toSpawn[i].Item1 + ", ";
-            }
-            name += "}";
-            Debug.Log(name);
-            DrawRoom(nextRoom, currentPosition, _wayColor, _wallColor, 1000f);
-            DrawRoom(nextRoom, currentPosition, Color.blue, Color.magenta, Time.deltaTime);
-            yield return null;
+
+            //DrawRoom(nextRoom, currentPosition, _wayColor, _wallColor, 1000f);
+            //DrawRoom(nextRoom, currentPosition, Color.blue, Color.magenta, Time.deltaTime);
             ++debugCount;
         }
 
-        foreach (KeyValuePair<Vector2Int, RoomData> room in output) {
-            DrawRoom(room.Value, room.Key, _wayColor, _wallColor, 1000f);
-        }
-        DrawRoom(startRoom, startPosition, Color.red, Color.yellow, 1000f);
+        //foreach (KeyValuePair<Vector2Int, RoomData> room in output) {
+        //    DrawRoom(room.Value, room.Key, _wayColor, _wallColor, 1000f);
+        //}
+        //DrawRoom(startRoom, startPosition, Color.red, Color.yellow, 1000f);
+        Debug.Log("End : " + _currentSeed);
+        return output;
+    }
 
-        Debug.Log("End");
-        //return output;
+    public void Clear() {
+        _floor.Clear();
     }
 
     // Poids par nombre de porte
@@ -152,7 +165,7 @@ public class LevelGenerator : MonoBehaviour {
 
         int count = 0;
         for (int i = 0; i < 4; i++) {
-            Debug.Log(!floor.ContainsKey(position + Tools.ToDirection(i)) + " .. " + room.gates[Tools.ToGate(i)]);
+            //Debug.Log(!floor.ContainsKey(position + Tools.ToDirection(i)) + " .. " + room.gates[Tools.ToGate(i)]);
             if (!floor.ContainsKey(position + Tools.ToDirection(i)) && room.gates[Tools.ToGate(i)]) {
                 toSpawn.Add(new (position + Tools.ToDirection(i), Tools.ToGate((i + 2) % 4)));
                 ++count;
@@ -166,9 +179,9 @@ public class LevelGenerator : MonoBehaviour {
             //Debug.Log(i + " .. " + Tools.ToGate(i) + " .. " + room.gates[Tools.ToGate(i)] + " .. " + Tools.ToDirection(i));
             if (room.gates[Tools.ToGate(i)]) {
                 Debug.DrawLine((Vector2)position * _roomSize, position * _roomSize + Tools.ToDirection(i) * (_roomSize / 2f), wayColor, time);
-                DrawRect((Vector2)position * _roomSize, _roomSize, roomColor, time);
             }
         }
+        DrawRect((Vector2)position * _roomSize, _roomSize, roomColor, time);
     }
 
     private void DrawRect(Vector2 center, Vector2 size, Color color, float time) {
@@ -181,5 +194,26 @@ public class LevelGenerator : MonoBehaviour {
         Debug.DrawLine(corners[1], corners[2], color, time);
         Debug.DrawLine(corners[2], corners[3], color, time);
         Debug.DrawLine(corners[3], corners[0], color, time);
+    }
+
+    private void OnDrawGizmos() {
+        if (_floor == null) { return; }
+        foreach(KeyValuePair<Vector2Int, RoomData> room in _floor) {
+            DrawGizmoRoom(room.Value, room.Key, _wayColor, _wallColor);
+        }
+        if (_floor.ContainsKey(_startPosition)) {
+            DrawGizmoRoom(_floor[_startPosition], _startPosition, Color.red, Color.yellow);
+        }
+    }
+
+    private void DrawGizmoRoom(RoomData room, Vector2Int position, Color wayColor, Color wallColor) {
+        Gizmos.color = wayColor;
+        for (int i = 0; i < 4; i++) {
+            if (room.gates[Tools.ToGate(i)]) {
+                Gizmos.DrawLine((Vector2)position * _roomSize, position * _roomSize + Tools.ToDirection(i) * (_roomSize / 2f));
+            }
+        }
+        Gizmos.color = wallColor;
+        Gizmos.DrawWireCube(position * _roomSize, _roomSize);
     }
 }
