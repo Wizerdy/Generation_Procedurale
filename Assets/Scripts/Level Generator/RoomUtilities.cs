@@ -12,8 +12,20 @@ public class Gates {
 
     public bool this[Gate gate] { get => value.Contains(gate); set => Modify((uint)gate, value); }
     public bool this[int index] { get => value.Contains((uint)index); set => Modify((uint)index, value); }
-    public bint4 Value => value;
+    public bint4 Value { get => value; set => this.value = value; }
     public int Count => Length();
+
+    public Gates() {
+        value = new bint4();
+    }
+
+    public Gates(uint integer) {
+        value = new bint4(integer);
+    }
+
+    public Gates(Gates gate) {
+        value = new bint4(gate.value);
+    }
 
     private int Length() {
         int count = 0;
@@ -35,6 +47,25 @@ public class Gates {
             }
         }
 
+    }
+
+    public Gate Random(bool state) {
+        int count = 0;
+        for (int i = 0; i < bint4.Length; i++)
+            if (value[i] == state)
+                ++count;
+
+        int random = UnityEngine.Random.Range(0, count);
+        count = 0;
+        for (int i = 0; i < bint4.Length; i++) {
+            if (value[i] == state) {
+                if (random == count) {
+                    return Tools.ToGate(i);
+                }
+                ++count;
+            }
+        }
+        return Gate.NONE;
     }
 
     public override string ToString() {
@@ -285,7 +316,7 @@ public class bint4 {
     }
 
     public bint4(bint4 copy) {
-        value = copy.value;
+        value = (bool[])copy.value.Clone();
         if (_debug) Debug.Log("New bint4 (copy) " + ToString());
     }
 
@@ -398,6 +429,13 @@ public class bint4 {
 
     #endregion
 
+    public bint4 Not() {
+        for (int i = 0; i < value.Length; i++) {
+            value[i] = !value[i];
+        }
+        return this;
+    }
+
     #region Operators
 
     #region Gate
@@ -409,6 +447,7 @@ public class bint4 {
 
     #region bint4
 
+    public static bint4 operator !(bint4 us) => new bint4(us).Not();
     public static bint4 operator +(bint4 us, bint4 them) => new bint4(us).Add(them);
     public static bint4 operator -(bint4 us, bint4 them) => new bint4(us).Remove(them);
 
@@ -505,7 +544,7 @@ public static class Tools {
     }
 
     public static BitArray ConvertBitArray(this uint integer) {
-        return new BitArray(new int[] { (int)integer } );
+        return new BitArray(new int[] { (int)integer });
     }
 
     public static bool[] ConvertBit(this uint integer, int length = -1) {
@@ -540,6 +579,22 @@ public static class Tools {
         }
     }
 
+    public static Vector2Int ToDirection(Gate gate) {
+        switch (gate) {
+            case Gate.NONE:
+            default:
+                return Vector2Int.zero;
+            case Gate.UP:
+                return new Vector2Int(0, 1);
+            case Gate.RIGHT:
+                return new Vector2Int(1, 0);
+            case Gate.DOWN:
+                return new Vector2Int(0, -1);
+            case Gate.LEFT:
+                return new Vector2Int(-1, 0);
+        }
+    }
+
     public static Gate ToGate(int direction) {
         switch (direction) {
             default:
@@ -553,6 +608,16 @@ public static class Tools {
             case 3:
                 return Gate.LEFT;
         }
+    }
+
+    public static Gate Inverse(this Gate gate) {
+        //uint integer = ((uint)gate << 2) | ((uint)gate >> 30);
+        uint integer = (((uint)gate * 17) >> 2) % 16;
+        return (Gate)integer;
+    }
+
+    public static int Ponder(List<float> list) {
+        return Ponder(list.ToArray());
     }
 
     public static int Ponder(params float[] weight) {

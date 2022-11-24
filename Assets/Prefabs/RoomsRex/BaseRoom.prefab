@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6675901234439729849}
-  - component: {fileID: 6814802751923232135}
   - component: {fileID: 6675901234439729855}
   - component: {fileID: 6675901234439729848}
   m_Layer: 0
@@ -34,21 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6814802751923232135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6675901234439729850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 025a0416cd678b542843352ffe0dc3cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gates:
-    value:
-      value: 00000000
 --- !u!1839735485 &6675901234439729855
 Tilemap:
   m_ObjectHideFlags: 0
@@ -1291,8 +1275,8 @@ Tilemap:
   - first: {x: 0, y: 0, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -2532,16 +2516,16 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 186
+  - m_RefCount: 187
     m_Data: {fileID: 11400000, guid: cb42927e8005be44b98c026b46705561, type: 2}
-  - m_RefCount: 61
+  - m_RefCount: 60
     m_Data: {fileID: 11400000, guid: a1115315590a5254a8955b11b583b9fd, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 186
+  - m_RefCount: 187
     m_Data: {fileID: -295721097, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
-  - m_RefCount: 61
+  - m_RefCount: 60
     m_Data: {fileID: 726775630, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 247

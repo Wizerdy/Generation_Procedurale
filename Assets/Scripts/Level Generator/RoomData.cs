@@ -2,8 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomData : MonoBehaviour {
-    public Gates gates;
+public enum RoomType {
+    NONE, RIDDLE, SECRET, OBJECT
+}
 
-    public int DoorCount => gates.Count;
+[System.Serializable]
+public class RoomData {
+    [SerializeField] RoomType _type;
+    [SerializeField, HideInInspector] Gates _gates;
+    [SerializeField, HideInInspector] Gates _blockingGates;
+
+    public int DoorCount => _gates.Count;
+    public Gates Gates { get => _gates; set => _gates = value; }
+    public Gates BlockingGates { get => _blockingGates; set => _blockingGates = value; }
+
+    public RoomData() {
+        _type = RoomType.NONE;
+        _gates = new Gates();
+        _blockingGates = new Gates();
+    }
+
+    public RoomData(RoomData copy) {
+        _type = copy._type;
+        _gates = copy._gates;
+        _blockingGates = copy._blockingGates;
+    }
+
+    public RoomData(Gates gate) {
+        _type = RoomType.NONE;
+        _gates = new Gates(gate);
+        _blockingGates = new Gates();
+    }
 }
