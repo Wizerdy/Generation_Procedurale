@@ -648,7 +648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cbbbb9d958b2a49b91126841589b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfFlash: 3
+  numberOfFlash: 6
   flashDuration: 1
   _doors: []
 --- !u!210 &562406882

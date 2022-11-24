@@ -104,7 +104,6 @@ MonoBehaviour:
   simon: {fileID: 662943610084750799}
   baseColor: {r: 0.5764706, g: 0.057825293, b: 0, a: 1}
   flashColor: {r: 1, g: 0.19628516, b: 0, a: 1}
-  flashDuration: 1
   isFlashing: 0
   canBeHit: 1
 --- !u!61 &662943609150991281
@@ -304,7 +303,6 @@ MonoBehaviour:
   simon: {fileID: 662943610084750799}
   baseColor: {r: 0.5764706, g: 0.5440527, b: 0, a: 1}
   flashColor: {r: 1, g: 0.98766965, b: 0, a: 1}
-  flashDuration: 1
   isFlashing: 0
   canBeHit: 1
 --- !u!61 &662943609254927937
@@ -504,7 +502,6 @@ MonoBehaviour:
   simon: {fileID: 662943610084750799}
   baseColor: {r: 0, g: 0.5340734, b: 0.5764706, a: 1}
   flashColor: {r: 0, g: 0.83137846, b: 1, a: 1}
-  flashDuration: 1
   isFlashing: 0
   canBeHit: 1
 --- !u!61 &662943609506306032
@@ -649,12 +646,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cbbbb9d958b2a49b91126841589b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfFlash: 3
-  lights:
-  - {fileID: 662943610251623780}
-  - {fileID: 662943609150991294}
-  - {fileID: 662943609254927950}
-  - {fileID: 662943609506306045}
+  numberOfFlash: 4
+  flashDuration: 1
+  _doors: []
 --- !u!210 &562406882
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -770,7 +764,6 @@ MonoBehaviour:
   simon: {fileID: 662943610084750799}
   baseColor: {r: 0.12384326, g: 0.5754717, b: 0, a: 1}
   flashColor: {r: 0.1650052, g: 1, b: 0, a: 1}
-  flashDuration: 1
   isFlashing: 0
   canBeHit: 1
 --- !u!61 &662943610251623782
