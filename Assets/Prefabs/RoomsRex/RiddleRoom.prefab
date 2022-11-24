@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8630683195577211050
+--- !u!1001 &4236715705169827799
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -53,49 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6675901234439729850, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}
       propertyPath: m_Name
-      value: Room_9
+      value: BaseRoom
       objectReference: {fileID: 0}
-    - target: {fileID: 6675901234439729855, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}
-      propertyPath: m_TileAssetArray.Array.data[1].m_RefCount
-      value: 188
-      objectReference: {fileID: 0}
-    - target: {fileID: 6675901234439729855, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}
-      propertyPath: m_TileAssetArray.Array.data[2].m_RefCount
-      value: 59
-      objectReference: {fileID: 0}
-    - target: {fileID: 6675901234439729855, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}
-      propertyPath: m_TileSpriteArray.Array.data[1].m_RefCount
-      value: 188
-      objectReference: {fileID: 0}
-    - target: {fileID: 6675901234439729855, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}
-      propertyPath: m_TileSpriteArray.Array.data[2].m_RefCount
-      value: 59
-      objectReference: {fileID: 0}
-    - target: {fileID: 6675901234439729855, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}
-      propertyPath: m_Tiles.Array.data[114].second.m_TileIndex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6675901234439729855, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}
-      propertyPath: m_Tiles.Array.data[237].second.m_TileIndex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6675901234439729855, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}
-      propertyPath: m_Tiles.Array.data[114].second.m_TileSpriteIndex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6675901234439729855, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}
-      propertyPath: m_Tiles.Array.data[237].second.m_TileSpriteIndex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6814802751923232135, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}
-      propertyPath: gates.value.value.Array.data[0]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6814802751923232135, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}
-      propertyPath: gates.value.value.Array.data[3]
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
-    - {fileID: 6814802751923232135, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}

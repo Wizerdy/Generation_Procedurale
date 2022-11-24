@@ -23,17 +23,20 @@ public class RoomData {
         _type = RoomType.NONE;
         _gates = new Gates();
         _blockingGates = new Gates();
+        _leverGates = new Gates();
     }
 
     public RoomData(RoomData copy) {
         _type = copy._type;
         _gates = copy._gates;
         _blockingGates = copy._blockingGates;
+        _leverGates = new Gates();
     }
 
     public RoomData(Gates gate) {
         _type = RoomType.NONE;
         _gates = new Gates(gate);
         _blockingGates = new Gates();
+        _leverGates = new Gates();
     }
 }
