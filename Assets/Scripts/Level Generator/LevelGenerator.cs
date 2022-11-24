@@ -410,11 +410,11 @@ public class LevelGenerator : MonoBehaviour {
     void InstantiateLevel(in Dictionary<Vector2Int, RoomData> currentFloor) {
         foreach (var room in currentFloor) {
             RexRoom newRoom = room.Value.Type switch {
-                RoomType.SECRET => Instantiate(_secretRoom, new Vector3(room.Key.x * _roomSize.x, room.Key.y * _roomSize.y, 0), Quaternion.identity),
-                RoomType.OBJECT => Instantiate(_objectRoom, new Vector3(room.Key.x * _roomSize.x, room.Key.y * _roomSize.y, 0), Quaternion.identity),
-                _ => Instantiate(_riddleRoom, new Vector3(room.Key.x * _roomSize.x, room.Key.y * _roomSize.y, 0), Quaternion.identity),
+                RoomType.SECRET => Instantiate(_secretRoom, _grid.transform),
+                RoomType.OBJECT => Instantiate(_objectRoom, _grid.transform),
+                _ => Instantiate(_riddleRoom, _grid.transform),
             };
-            newRoom.transform.parent = _grid.transform;
+            newRoom.transform.position = new Vector3(room.Key.x * _roomSize.x, room.Key.y * _roomSize.y, 0);
             Vector3 adapt = new Vector3(-1, -1, 0);
             for (int i = 0; i < 4; i++) {
                 RexDoors door;
@@ -435,6 +435,8 @@ public class LevelGenerator : MonoBehaviour {
 
             }
         }
+
+        _grid.GetComponent<LevelManager>().LevelGenerated();
     }
 
     private Dictionary<Vector2Int, RoomData> AddObjectRoom(in Dictionary<Vector2Int, RoomData> currentFloor) {

@@ -5,14 +5,16 @@ public class DoorController : MonoBehaviour
 {
     public DoorController connectedDoor { get; private set; }
 
-    protected virtual void Awake()
-    {
+    protected virtual void Awake() {
+        //GetComponentInParent<LevelManager>().OnLevelGenerated += Init;
+    }
+
+    public void Init() {
         var grid = GetComponentInParent<Grid>();
         var allDoors = grid.GetComponentsInChildren<DoorController>();
         connectedDoor = allDoors.FirstOrDefault(OneTileApartDoor);
 
-        bool OneTileApartDoor(DoorController door)
-        {
+        bool OneTileApartDoor(DoorController door) {
             var distance = Vector2.Distance(door.transform.position, transform.position);
             return distance < grid.cellSize.magnitude && distance > Mathf.Epsilon;
         }
