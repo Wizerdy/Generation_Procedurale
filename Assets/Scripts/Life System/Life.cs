@@ -7,6 +7,7 @@ public class Life : MonoBehaviour
     public bool isInvincible;
     public uint startLife;
     public UnityEvent<uint> onDamageTaken;
+    public UnityEvent<uint> onHit;
 
     public uint currentLife { get; private set; }
     public IEnumerator onDie;
@@ -20,6 +21,7 @@ public class Life : MonoBehaviour
 
     public void TakeDamage(uint damage)
     {
+        onHit.Invoke(damage);
         if (!isAlive || isInvincible) return;
         if (damage > currentLife)
             damage = currentLife;
