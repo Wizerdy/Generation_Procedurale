@@ -170,8 +170,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileMap: {fileID: 3835454865638274991}
-  _openTile: {fileID: 11400000, guid: 2a11b4b782d859842be86eff657c0407, type: 2}
-  _closedTile: {fileID: 11400000, guid: f7859be33de97874dbc3257a181be245, type: 2}
+  _openTile: {fileID: 11400000, guid: 6a4e204d43d3d4b42993928152294ca3, type: 2}
+  _closedTile: {fileID: 11400000, guid: 7ac79720f02d14140b7208dd7d969af4, type: 2}
   _isOpen: 0
 --- !u!61 &6793493969413125241
 BoxCollider2D:
