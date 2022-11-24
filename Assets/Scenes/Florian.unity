@@ -287,14 +287,16 @@ MonoBehaviour:
   - {fileID: 2978377285879268653, guid: 42e1f81e122da3148a83da6f4c89fb27, type: 3}
   - {fileID: 2978377285879268653, guid: 8d558bc97341ae7468955af3ad8e036a, type: 3}
   _startingRooms:
-  - {fileID: 2978377285879268653, guid: 8d558bc97341ae7468955af3ad8e036a, type: 3}
-  _seed: jforemds
-  _maxIteration: 10000
-  _floorSize: 20
-  _oneDoor: 0
-  _twoDoor: 1
-  _threeDoor: 0.05
-  _fourDoor: 0.05
+  - {fileID: 7526087116795941017, guid: 37717309bfb974e44b0f838a468a5856, type: 3}
+  _seed: 
+  _floorSize: 100
+  _doors:
+  - 0
+  - 1
+  - 0.2
+  - 0
+  _maxIteration: 100000
+  _closeDoor: 1
   _roomSize: {x: 4, y: 2}
   _wayColor: {r: 0.0039215684, g: 1, b: 0.09538529, a: 1}
   _wallColor: {r: 1, g: 1, b: 1, a: 0.039215688}

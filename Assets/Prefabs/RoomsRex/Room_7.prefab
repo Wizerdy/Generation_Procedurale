@@ -101,12 +101,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6814802751923232135, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}
       propertyPath: gates.value.value.Array.data[1]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6814802751923232135, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}
       propertyPath: gates.value.value.Array.data[2]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 6814802751923232135, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 743bc0662aa046c4ca6456bb39e9092f, type: 3}
