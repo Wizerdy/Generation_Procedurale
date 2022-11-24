@@ -314,9 +314,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 262ff5a0fc441214c988aff6b6f6ae92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectRoom: {fileID: 8221754922272652301, guid: 35726e48a56c7934681a4f809a1afb91, type: 3}
-  _riddleRoom: {fileID: 7380914569602426221, guid: fb5090bb26a8e28408cabaf2389a9a99, type: 3}
-  _secretRoom: {fileID: 3900255022244066105, guid: b276e5f866a8f434983bd8631497768a, type: 3}
+  _objectRoom: {fileID: -2529236340540692631, guid: 35726e48a56c7934681a4f809a1afb91, type: 3}
+  _riddleRoom: {fileID: 819556734783978592, guid: fb5090bb26a8e28408cabaf2389a9a99, type: 3}
+  _secretRoom: {fileID: 2409967967981499953, guid: b276e5f866a8f434983bd8631497768a, type: 3}
   _wallPrefab: {fileID: 6060660894972299057, guid: 1c137e78270a6fc4fa0ae6009767b7b8, type: 3}
   _leverPrefab: {fileID: 952032768461885252, guid: 95bab5e243687b84f8bb4e0111c71a97, type: 3}
   _doorsPrefab: {fileID: 3770167269791445653, guid: 70201e4c6e94fb341ad7b999b79105ad, type: 3}
@@ -334,7 +334,7 @@ MonoBehaviour:
   - 0.2
   - 0
   _leverChance: 0.2
-  _distSecretRoomFromStart: 3
+  _distSecretRoomFromStart: 2
   _maxIteration: 100000
   _closeDoor: 1
   _instantiate: 1
@@ -343,7 +343,7 @@ MonoBehaviour:
   _blockedWayColor: {r: 1, g: 0, b: 0, a: 1}
   _leverGateColor: {r: 0, g: 0, b: 1, a: 1}
   _secretRoomColor: {r: 0, g: 0, b: 0, a: 1}
-  _objectRoomColor: {r: 0, g: 1, b: 1, a: 0.15686275}
+  _objectRoomColor: {r: 0, g: 1, b: 1, a: 1}
   _wallColor: {r: 1, g: 1, b: 1, a: 0.039215688}
 --- !u!4 &1501809627
 Transform:

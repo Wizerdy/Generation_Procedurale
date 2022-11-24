@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class LevelGenerator : MonoBehaviour {
-    [SerializeField] GameObject _objectRoom;
-    [SerializeField] GameObject _riddleRoom;
-    [SerializeField] GameObject _secretRoom;
+    [SerializeField] RexRoom _objectRoom;
+    [SerializeField] RexRoom _riddleRoom;
+    [SerializeField] RexRoom _secretRoom;
     [SerializeField] GameObject _wallPrefab;
     [SerializeField] RexLever _leverPrefab;
     [SerializeField] RexDoors _doorsPrefab;
@@ -409,20 +409,11 @@ public class LevelGenerator : MonoBehaviour {
 
     void InstantiateLevel(in Dictionary<Vector2Int, RoomData> currentFloor) {
         foreach (var room in currentFloor) {
-            GameObject newRoom;
-            switch (room.Value.Type) {
-                default:
-                case RoomType.NONE:
-                case RoomType.RIDDLE:
-                    newRoom = Instantiate(_riddleRoom.gameObject, new Vector3(room.Key.x * _roomSize.x, room.Key.y * _roomSize.y, 0), Quaternion.identity);
-                    break;
-                case RoomType.SECRET:
-                    newRoom = Instantiate(_secretRoom.gameObject, new Vector3(room.Key.x * _roomSize.x, room.Key.y * _roomSize.y, 0), Quaternion.identity);
-                    break;
-                case RoomType.OBJECT:
-                    newRoom = Instantiate(_objectRoom.gameObject, new Vector3(room.Key.x * _roomSize.x, room.Key.y * _roomSize.y, 0), Quaternion.identity);
-                    break;
-            }
+            RexRoom newRoom = room.Value.Type switch {
+                RoomType.SECRET => Instantiate(_secretRoom, new Vector3(room.Key.x * _roomSize.x, room.Key.y * _roomSize.y, 0), Quaternion.identity),
+                RoomType.OBJECT => Instantiate(_objectRoom, new Vector3(room.Key.x * _roomSize.x, room.Key.y * _roomSize.y, 0), Quaternion.identity),
+                _ => Instantiate(_riddleRoom, new Vector3(room.Key.x * _roomSize.x, room.Key.y * _roomSize.y, 0), Quaternion.identity),
+            };
             newRoom.transform.parent = _grid.transform;
             Vector3 adapt = new Vector3(-1, -1, 0);
             for (int i = 0; i < 4; i++) {
@@ -436,6 +427,7 @@ public class LevelGenerator : MonoBehaviour {
                     if (room.Value.LeverGates[Tools.ToGate(i)]) {
                         RexLever lever = Instantiate(_leverPrefab, door.gameObject.transform.position + Vector3.RotateTowards(new Vector3(Tools.ToDirection(i).x, Tools.ToDirection(i).y, 0), Vector3.back, Mathf.PI / -2, 0) - new Vector3(Tools.ToDirection(i).x, Tools.ToDirection(i).y, 0), Quaternion.identity, newRoom.transform.GetChild(2));
                         lever.AddDoor(door);
+                        newRoom.DOORS.Add(door);
                     }
                 } else {
                     Instantiate(_wallPrefab, newRoom.transform.position + new Vector3(Tools.ToDirection(i).x * (_roomSize.x + adapt.x), Tools.ToDirection(i).y * (_roomSize.y + adapt.y), 0) / 2, Quaternion.identity, newRoom.transform.GetChild(1));

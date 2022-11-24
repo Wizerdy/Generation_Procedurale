@@ -12,7 +12,7 @@ public class SimonLight : MonoBehaviour
     [HideInInspector] public bool isFlashing = false;
     [HideInInspector] public bool canBeHit = true;
 
-    void Start()
+    void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = baseColor;
