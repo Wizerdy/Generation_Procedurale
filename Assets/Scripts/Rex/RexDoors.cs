@@ -18,6 +18,20 @@ public class RexDoors : MonoBehaviour {
     }
 
     public void ChangeState() {
+        ChangeStateNoSide();
+        RaycastHit2D[] hit = Physics2D.BoxCastAll(transform.position, Vector2.one * 2, 0, Vector2.zero);
+        List<RexDoors> doors = new List<RexDoors>();
+        foreach (var item in hit) {
+            RexDoors doorNext = item.collider.gameObject.GetComponent<RexDoors>();
+            if (null != doorNext && doorNext != this && !doors.Contains(doorNext)) {
+                doorNext.ChangeStateNoSide();
+                doors.Add(doorNext);
+            }
+        }
+    }
+
+    public void ChangeStateNoSide() {
+        Debug.Log(gameObject.name + "  " + _isOpen);
         _isOpen = !_isOpen;
         PlaceTile();
         UpdateCollider();

@@ -10,6 +10,7 @@ public class LevelGeneratorEditor : Editor {
         EditorGUILayout.Space();
         EditorGUILayout.BeginHorizontal();
         if (GUILayout.Button("Generate")) {
+            ((LevelGenerator)target)?.Clear();
             ((LevelGenerator)target)?.GenerateTheFloor(Vector2Int.zero);
             SceneView.RepaintAll();
         }
