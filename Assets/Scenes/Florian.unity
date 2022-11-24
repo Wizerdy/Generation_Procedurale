@@ -270,35 +270,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 262ff5a0fc441214c988aff6b6f6ae92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rooms:
-  - {fileID: 1035990421198280828, guid: 77dcee771c46aef4a90d8a863400c354, type: 3}
-  - {fileID: 2983518035799732508, guid: 3b68f65e0738f374fba0a38fb408e8ad, type: 3}
-  - {fileID: 1003055894354495877, guid: 34c01865813c5d84589d32b4a1a31965, type: 3}
-  - {fileID: 7526087116795941017, guid: 37717309bfb974e44b0f838a468a5856, type: 3}
-  - {fileID: 2978377285879268653, guid: f08f7519a3b0e9f4ca5922bccbbae143, type: 3}
-  - {fileID: 2978377285879268653, guid: 130f94c37da1bd14680efb3626c1ea1b, type: 3}
-  - {fileID: 2978377285879268653, guid: 4e28c58c04154834e833127869f801e0, type: 3}
-  - {fileID: 2978377285879268653, guid: 6d497733a7c6a6a49b610e53bdb0e4b6, type: 3}
-  - {fileID: 2978377285879268653, guid: c8cdf8a03f7bacd41b53b1b5d36091a3, type: 3}
-  - {fileID: 2978377285879268653, guid: a7ff3cc7c8132bb4e92389035247fb58, type: 3}
-  - {fileID: 2978377285879268653, guid: 9c55a9e8762ed714cb6d137f178fa1f2, type: 3}
-  - {fileID: 2978377285879268653, guid: efb59fed66db0b141bbcd819582189fa, type: 3}
-  - {fileID: 2978377285879268653, guid: 1e40cdb413450bd41b6bd45f22bf585a, type: 3}
-  - {fileID: 2978377285879268653, guid: 42e1f81e122da3148a83da6f4c89fb27, type: 3}
-  - {fileID: 2978377285879268653, guid: 8d558bc97341ae7468955af3ad8e036a, type: 3}
   _startingRooms:
-  - {fileID: 7526087116795941017, guid: 37717309bfb974e44b0f838a468a5856, type: 3}
+  - value:
+      value: 00000100
   _seed: 
-  _floorSize: 100
+  _floorSize: 20
   _doors:
   - 0
   - 1
   - 0.2
   - 0
+  _distSecretRoomFromStart: 3
   _maxIteration: 100000
   _closeDoor: 1
   _roomSize: {x: 4, y: 2}
   _wayColor: {r: 0.0039215684, g: 1, b: 0.09538529, a: 1}
+  _blockedWayColor: {r: 1, g: 0, b: 0, a: 1}
+  _leverRoomColor: {r: 0, g: 0, b: 1, a: 1}
+  _secretRoomColor: {r: 0, g: 0, b: 0, a: 1}
+  _objectRoomColor: {r: 0, g: 1, b: 1, a: 0.15294118}
   _wallColor: {r: 1, g: 1, b: 1, a: 0.039215688}
 --- !u!4 &1501809627
 Transform:

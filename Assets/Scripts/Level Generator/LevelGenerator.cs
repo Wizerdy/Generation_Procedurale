@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour {
-    [SerializeField] List<RoomData> _rooms;
+    //[SerializeField] List<RoomData> _rooms;
     //[SerializeField] List<RoomData> _startingRooms;
     [SerializeField] List<Gates> _startingRooms;
 
@@ -12,6 +12,7 @@ public class LevelGenerator : MonoBehaviour {
     [SerializeField] string _seed = "";
     [SerializeField] int _floorSize = 20;
     [SerializeField, Range(0f, 1f)] float[] _doors = new float[4];
+    [SerializeField] int _distSecretRoomFromStart = 2;
 
     [Header("System")]
     [SerializeField] int _maxIteration = 1000;
@@ -19,12 +20,15 @@ public class LevelGenerator : MonoBehaviour {
     [SerializeField] Vector2 _roomSize = new Vector2Int(4, 2);
     [SerializeField] Color _wayColor = Color.blue;
     [SerializeField] Color _blockedWayColor = Color.red;
+    [SerializeField] Color _leverRoomColor = Color.blue;
+    [SerializeField] Color _secretRoomColor = Color.black;
+    [SerializeField] Color _objectRoomColor = Color.cyan;
     [SerializeField] Color _wallColor = Color.white;
 
     Dictionary<Vector2Int, RoomData> _floor = new Dictionary<Vector2Int, RoomData>();
     Vector2Int _startPosition;
 
-    int _currentSeed = 0;
+    int _currentSeed = -1;
 
     Gates[] _allGates;
 
@@ -41,22 +45,31 @@ public class LevelGenerator : MonoBehaviour {
     }
 
     public void GenerateTheFloor(Vector2Int position) {
-        int debugCount = 0;
-        _startPosition = position;
-        _floor = new Dictionary<Vector2Int, RoomData>();
-        //do {
-            _floor = GenerateFloor(_startPosition, _floorSize, _floor);
-            ++debugCount;
-        //} while ((_floor?.Count ?? 0) < _floorSize && debugCount < 100 && _seed == "");
+        Clear();
+        _currentSeed = -1;
 
-        debugCount = 0;
-        Dictionary<Vector2Int, RoomData> otherFloor;
-        Vector2Int farest = Farest(_floor, _startPosition);
-        //do {
-            otherFloor = GenerateFloor(farest, _floorSize * 2, _floor);
-            ++debugCount;
-        //} while ((otherFloor?.Count ?? 0) < _floorSize * 2f && debugCount < 100 && _seed == "");
-        _floor = otherFloor;
+        _startPosition = position;
+        try {
+            _floor = new Dictionary<Vector2Int, RoomData>();
+            int randomFloorSize = Random.Range(_floorSize/2, _floorSize/4 * 3);
+            _floor = GenerateFloor(_startPosition, randomFloorSize, _floor);
+
+            Vector2Int farest = Farest(_floor, _startPosition);
+
+            Vector2Int? secretSanta = PutSecretRoom(ref _floor, _startPosition);
+            if (secretSanta == null) {
+                throw new GenerationException("Can't spawn secret room");
+            }
+
+            Dictionary<Vector2Int, RoomData> otherFloor;
+            otherFloor = GenerateFloor(farest, _floorSize, _floor);
+            _floor = otherFloor;
+        } catch (GenerationException e) {
+            Debug.LogWarning("Rebuilding! (Cause:" + e + ")");
+            GenerateTheFloor(position);
+        }
+
+        Debug.Log("End ! Seed:" + _currentSeed + " Size:" + _floor.Count);
     }
 
     public Dictionary<Vector2Int, RoomData> GenerateFloor(Vector2Int startPosition, int size, in Dictionary<Vector2Int, RoomData> currentFloor = null) {
@@ -80,6 +93,7 @@ public class LevelGenerator : MonoBehaviour {
             startRoom = new RoomData(_startingRooms[Random.Range(0, _startingRooms.Count)]);
         } else {
             startRoom = new RoomData(floor[startPosition]);
+            floor.Remove(startPosition);
             Gate newGate = FreePlace(floor, startPosition).Random(true);
             startRoom.Gates[newGate] = true;
             startRoom.BlockingGates[newGate] = true;
@@ -112,12 +126,6 @@ public class LevelGenerator : MonoBehaviour {
             int nextDoors = Tools.Ponder(toPonder);
             nextDoors = bounds.x + nextDoors + 1;
 
-            //List<RoomData> nextRooms = FindMatchingRoom(_rooms, 
-            //    (RoomData data) => data.gates[next.Item2] &&
-            //        data.DoorCount == nextDoors &&
-            //        (data.gates.Value & meanFriends.Value) == 0 &&
-            //        (data.gates.Value.Contains(happyFriends.Value)));
-
             List<Gates> nextGates = _allGates.Where((Gates gate) => gate[next.Item2] &&
                     gate.Count == nextDoors &&
                     (gate.Value & meanFriends.Value) == 0 &&
@@ -143,27 +151,9 @@ public class LevelGenerator : MonoBehaviour {
             CloseFloor(ref floor, in toSpawn);
         }
 
-        Debug.Log("End:" + _currentSeed + " Size:" + floor.Count);
+        //Debug.Log("End:" + _currentSeed + " Size:" + floor.Count);
         return floor;
     }
-
-    //private void CloseFloor(ref Dictionary<Vector2Int, Gates> floor, in List<(Vector2Int, Gate)> toSpawn) {
-    //    Dictionary<Vector2Int, Gates> updatedFloor = new Dictionary<Vector2Int, Gates>();
-    //    for (int i = 0; i < toSpawn.Count; i++) {
-    //        (Vector2Int, Gate) toClose = new (toSpawn[i].Item1 + Tools.ToDirection(toSpawn[i].Item2), toSpawn[i].Item2.Inverse());
-    //        if (!updatedFloor.ContainsKey(toClose.Item1)) {
-    //            updatedFloor.Add(toClose.Item1, new Gates(floor[toClose.Item1]));
-    //        }
-    //        updatedFloor[toClose.Item1][toClose.Item2] = false;
-    //        Debug.Log("Pos:" + toClose.Item1 + " Gat:" + toClose.Item2 + " oga:" + toSpawn[i].Item2);
-    //    }
-
-    //    List<Gates> randomOutput = new List<Gates>();
-    //    foreach (KeyValuePair<Vector2Int, Gates> item in updatedFloor) {
-    //        randomOutput = FindMatchingRoom(_rooms, (RoomData data) => (data.gates.Value ^ item.Value.Value) == 0);
-    //        floor[item.Key] = randomOutput[Random.Range(0, randomOutput.Count)];
-    //    }
-    //}
 
     private void CloseFloor(ref Dictionary<Vector2Int, RoomData> floor, in List<(Vector2Int, Gate)> toSpawn) {
         for (int i = 0; i < toSpawn.Count; i++) {
@@ -176,12 +166,12 @@ public class LevelGenerator : MonoBehaviour {
         _floor.Clear();
     }
 
-    private List<RoomData> FindMatchingRoom(List<RoomData> list, Gate gate) {
-        return FindMatchingRoom(list, (RoomData data) => data.Gates[gate]);
+    private List<Gates> FindMatchingRoom(Gate gate) {
+        return FindMatchingRoom((Gates data) => data[gate]);
     }
 
-    private List<RoomData> FindMatchingRoom(List<RoomData> list, System.Func<RoomData, bool> predicate) {
-        return list.Where(predicate).ToList();
+    private List<Gates> FindMatchingRoom(System.Func<Gates, bool> predicate) {
+        return _allGates.Where(predicate).ToList();
     }
 
     private Gates AskNeighborhood(in Dictionary<Vector2Int, RoomData> currentFloor, Vector2Int position, bool happy) {
@@ -269,6 +259,50 @@ public class LevelGenerator : MonoBehaviour {
         return Mathf.Abs(dist1.x - dist2.x) + Mathf.Abs(dist1.y - dist2.y);
     }
 
+    bool AtLeastOneSpace(ref Dictionary<Vector2Int, RoomData> currentFloor, Vector2Int roomPos) {
+        for (int i = 0; i < 4; i++) {
+            if (!currentFloor.ContainsKey(roomPos + Tools.ToDirection(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    Vector2Int? PutSecretRoom(ref Dictionary<Vector2Int, RoomData> currentFloor, Vector2Int startPosition) {
+        (Vector2Int, RoomData) emptyRoom = new(Vector2Int.zero, null);
+        foreach (var item in currentFloor) {
+            if ((item.Value.DoorCount == 2 || item.Value.DoorCount == 3)
+                && RoomDistance(item.Key, startPosition) >= _distSecretRoomFromStart
+                && AtLeastOneSpace(ref currentFloor, item.Key)) {
+                emptyRoom = new(item.Key, item.Value);
+                break;
+            }
+        }
+
+        if (emptyRoom.Item2 == null) { return null; }
+
+        emptyRoom.Item2.Type = RoomType.OBJECT;
+
+        Vector2Int? output = null;
+        for (int i = 0; i < 4; i++) {
+            Vector2Int position = emptyRoom.Item1 + Tools.ToDirection(i);
+            emptyRoom.Item2.Gates[Tools.ToGate(i)] = true;
+            if (_floor.ContainsKey(position)) {
+                currentFloor[emptyRoom.Item1 + Tools.ToDirection(i)].Gates[Tools.ToGate((i + 2) % 4)] = true;
+            } else {
+                RoomData newRoom = new RoomData(FindMatchingRoom((Gates room) => room[Tools.ToGate((i + 2) % 4)] && room.Count == 1)[0]);
+                currentFloor.Add(emptyRoom.Item1 + Tools.ToDirection(i), newRoom);
+                if (output == null) {
+                    newRoom.Type = RoomType.SECRET;
+                    output = emptyRoom.Item1 + Tools.ToDirection(i);
+                } else {
+                    newRoom.Type = RoomType.RIDDLE;
+                }
+            }
+        }
+        return output;
+    }
+
     private void DrawRoom(RoomData room, Vector2Int position, Color wayColor, Color roomColor, float time) {
         for (int i = 0; i < 4; i++) {
             //Debug.Log(i + " .. " + Tools.ToGate(i) + " .. " + room.gates[Tools.ToGate(i)] + " .. " + Tools.ToDirection(i));
@@ -311,11 +345,26 @@ public class LevelGenerator : MonoBehaviour {
                 Gizmos.DrawLine((Vector2)position * _roomSize, position * _roomSize + Tools.ToDirection(i) * (_roomSize / 2f));
             }
         }
-        Gizmos.color = wallColor;
+
+        switch (room.Type) {
+            case RoomType.NONE:
+            case RoomType.RIDDLE:
+            default:
+                Gizmos.color = wallColor;
+                break;
+            case RoomType.SECRET:
+                Gizmos.color = _secretRoomColor;
+                break;
+            case RoomType.OBJECT:
+                Gizmos.color = _objectRoomColor;
+                break;
+        }
         Gizmos.DrawWireCube(position * _roomSize, _roomSize);
     }
 
     private void LoadSeed(string seed) {
+        if (_currentSeed != -1) { return; }
+
         if (_seed == "") {
             _currentSeed = Random.Range(0, int.MaxValue);
         } else {
@@ -328,4 +377,10 @@ public class LevelGenerator : MonoBehaviour {
         }
         Random.InitState(_currentSeed);
     }
+}
+
+
+public class GenerationException : System.Exception {
+    public GenerationException() : base() { }
+    public GenerationException(string message) : base(message) { }
 }
