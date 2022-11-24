@@ -8,7 +8,6 @@ public class SimonLight : MonoBehaviour
     [SerializeField] private Simon simon;
     [SerializeField] private Color baseColor;
     [SerializeField] private Color flashColor;
-    public float flashDuration = 3.0f;
     private SpriteRenderer spriteRenderer;
     [HideInInspector] public bool isFlashing = false;
     [HideInInspector] public bool canBeHit = true;
@@ -21,7 +20,7 @@ public class SimonLight : MonoBehaviour
 
     public IEnumerator Flash() {
         spriteRenderer.color = flashColor;
-        yield return new WaitForSeconds(flashDuration);
+        yield return new WaitForSeconds(simon.flashDuration);
         spriteRenderer.color = baseColor;
         yield return null;
     }

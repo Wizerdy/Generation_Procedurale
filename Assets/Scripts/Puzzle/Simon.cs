@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Simon : MonoBehaviour
 {
-    [SerializeField] private int numberOfFlash = 10;
+    [SerializeField] private int numberOfFlash = 4;
+    public float flashDuration = 1;
     private List<SimonLight> flashOrder = new List<SimonLight>();
     private List<SimonLight> lights = new List<SimonLight>();
     private List<SimonLight> hitOrder = new List<SimonLight>();
     private int numberHit = 0;
+    [SerializeField] List<RexDoors> _doors = new List<RexDoors>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +31,7 @@ public class Simon : MonoBehaviour
 
         foreach (var light in flashOrder) {
             StartCoroutine(light.Flash());
-            yield return new WaitForSeconds(light.flashDuration);
+            yield return new WaitForSeconds(flashDuration);
         }
 
         foreach (var light in flashOrder) {
@@ -46,6 +49,8 @@ public class Simon : MonoBehaviour
                     flash.canBeHit = false;
                     flash.SetToWinColor();
                 }
+                SwitchDoor();
+
                 Debug.Log("SIMON PUZZLE WIN");
                 return;
             }
@@ -71,5 +76,23 @@ public class Simon : MonoBehaviour
                 return false;
         }
         return true;
+    }
+
+    public void SwitchDoor() {
+        for (int i = 0; i < _doors.Count; i++) {
+            _doors[i].ChangeState();
+        }
+    }
+
+    public void AddDoor(RexDoors door) {
+        if (!_doors.Contains(door)) {
+            _doors.Add(door);
+        }
+    }
+
+    public void RemoveDoor(RexDoors door) {
+        if (_doors.Contains(door)) {
+            _doors.Remove(door);
+        }
     }
 }
