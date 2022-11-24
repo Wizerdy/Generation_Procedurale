@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class RoomController : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class RoomController : MonoBehaviour
     {
         enemiesManager = GetComponentInChildren<RoomEnemiesManager>();
         levelManager = GetComponentInParent<LevelManager>();
+
+        levelManager.OnLevelGenerated += Init;
     }
 
-    private void Start()
+    private void Init()
     {
         neighbours = levelManager.GetNeighbours(this);
     }

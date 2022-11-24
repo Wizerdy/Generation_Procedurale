@@ -9,12 +9,14 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2DMovement movement;
     private Shooter[] shooters;
     [SerializeField] GameObject cannons;
+    private PlayerWeapons playerWeapon;
 
     private void Awake()
     {
         shooters = cannons.GetComponentsInChildren<Shooter>();
         life = GetComponent<Life>();
         movement = GetComponent<Rigidbody2DMovement>();
+        playerWeapon = GetComponent<PlayerWeapons>();
     }
 
     private void Start()
@@ -57,12 +59,32 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnLeftWeaponDrop(InputAction.CallbackContext input) {
+        if (playerWeapon.leftWeapon != WeaponType.None) {
+            playerWeapon.DropLeftWeapon();
+        }
+    }
+
+    public void OnRightWeaponDrop(InputAction.CallbackContext input) {
+        if (playerWeapon.rightWeapon != WeaponType.None) {
+            playerWeapon.DropRightWeapon();
+        }
+    }
+
     public void OnAutoDie(InputAction.CallbackContext input)
     {
         if (!input.performed)
             return;
 
         life.TakeDamage(life.currentLife);
+    }
+
+    public void OnChangeWorld(InputAction.CallbackContext input) {
+        if (!input.performed) {
+            return;
+        }
+
+        FindObjectOfType<GameManager>().ChangeWorld(this);
     }
 
     private IEnumerator OnDie()

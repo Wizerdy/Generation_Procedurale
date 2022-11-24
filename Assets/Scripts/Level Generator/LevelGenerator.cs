@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class LevelGenerator : MonoBehaviour {
-    [SerializeField] GameObject _objectRoom;
-    [SerializeField] GameObject _riddleRoom;
-    [SerializeField] GameObject _secretRoom;
+    [SerializeField] RexRoom _objectRoom;
+    [SerializeField] RexRoom _riddleRoom;
+    [SerializeField] RexRoom _secretRoom;
     [SerializeField] GameObject _wallPrefab;
     [SerializeField] RexLever _leverPrefab;
     [SerializeField] RexDoors _doorsPrefab;
@@ -21,6 +21,7 @@ public class LevelGenerator : MonoBehaviour {
     [SerializeField] string _seed = "";
     [SerializeField] int _floorSize = 20;
     [SerializeField, Range(0f, 1f)] float[] _doors = new float[4];
+    [SerializeField, Range(0f, 1f)] float _leverChance = 0.2f;
     [SerializeField] int _distSecretRoomFromStart = 2;
 
     [Header("System")]
@@ -30,7 +31,7 @@ public class LevelGenerator : MonoBehaviour {
     [SerializeField] Vector2 _roomSize = new Vector2Int(4, 2);
     [SerializeField] Color _wayColor = Color.blue;
     [SerializeField] Color _blockedWayColor = Color.red;
-    [SerializeField] Color _leverRoomColor = Color.blue;
+    [SerializeField] Color _leverGateColor = Color.blue;
     [SerializeField] Color _secretRoomColor = Color.black;
     [SerializeField] Color _objectRoomColor = Color.cyan;
     [SerializeField] Color _wallColor = Color.white;
@@ -52,16 +53,28 @@ public class LevelGenerator : MonoBehaviour {
 
     private void Start() {
         GenerateTheFloor(Vector2Int.zero);
+        if (_instantiate) {
+            InstantiateLevel(_floor);
+        }
+
+        GenerateTheFloor(Vector2Int.up * 10, false);
+        if (_instantiate) {
+            InstantiateLevel(_floor);
+        }
     }
 
-    public void GenerateTheFloor(Vector2Int position) {
-        Clear();
-        _currentSeed = -1;
+    public void GenerateTheFloor(Vector2Int position, bool clear = true) {
+        if (clear) {
+            Clear();
+            _currentSeed = -1;
+        }
+
+        LoadSeed(_seed);
 
         _startPosition = position;
         try {
             _floor = new Dictionary<Vector2Int, RoomData>();
-            int randomFloorSize = Random.Range(_floorSize/2, _floorSize/4 * 3);
+            int randomFloorSize = Random.Range(_floorSize / 2, _floorSize / 4 * 3);
             _floor = GenerateFloor(_startPosition, randomFloorSize, _floor);
 
             Vector2Int farest = Farest(_floor, _startPosition);
@@ -74,6 +87,12 @@ public class LevelGenerator : MonoBehaviour {
             Dictionary<Vector2Int, RoomData> otherFloor;
             otherFloor = GenerateFloor(farest, _floorSize, _floor);
             _floor = otherFloor;
+
+            for (int i = 0; i < 5; i++) {
+                _floor = AddObjectRoom(_floor);
+            }
+
+            _floor = AddRandomLever(_floor);
         } catch (GenerationException e) {
             Debug.LogWarning("Rebuilding! (Cause:" + e + ")");
             GenerateTheFloor(position);
@@ -84,8 +103,6 @@ public class LevelGenerator : MonoBehaviour {
 
     public Dictionary<Vector2Int, RoomData> GenerateFloor(Vector2Int startPosition, int size, in Dictionary<Vector2Int, RoomData> currentFloor = null) {
         Init();
-
-        LoadSeed(_seed);
 
         List<(Vector2Int, Gate)> toSpawn = new List<(Vector2Int, Gate)>();
         Vector2Int currentPosition = startPosition;
@@ -162,8 +179,6 @@ public class LevelGenerator : MonoBehaviour {
         }
 
         //Debug.Log("End:" + _currentSeed + " Size:" + floor.Count);
-        if (_instantiate)
-            InstantiateLevel(in floor);
         return floor;
     }
 
@@ -310,6 +325,8 @@ public class LevelGenerator : MonoBehaviour {
                 if (output == null) {
                     newRoom.Type = RoomType.SECRET;
                     output = emptyRoom.Item1 + Tools.ToDirection(i);
+                    emptyRoom.Item2.SecretGates[Tools.ToGate(i)] = true;
+                    newRoom.SecretGates[Tools.ToGate((i + 2) % 4)] = true;
                 } else {
                     newRoom.Type = RoomType.RIDDLE;
                 }
@@ -356,6 +373,10 @@ public class LevelGenerator : MonoBehaviour {
                 Gizmos.color = wayColor;
                 if (room.BlockingGates[Tools.ToGate(i)]) {
                     Gizmos.color = blockedWayColor;
+                } else if (room.LeverGates[Tools.ToGate(i)]) {
+                    Gizmos.color = _leverGateColor;
+                } else if (room.SecretGates[Tools.ToGate(i)]) {
+                    Gizmos.color = new Color(wayColor.r, wayColor.g, wayColor.b, wayColor.a / 4f);
                 }
                 Gizmos.DrawLine((Vector2)position * _roomSize, position * _roomSize + Tools.ToDirection(i) * (_roomSize / 2f));
             }
@@ -378,7 +399,7 @@ public class LevelGenerator : MonoBehaviour {
     }
 
     private void LoadSeed(string seed) {
-        if (_currentSeed != -1) { return; }
+        if (_currentSeed != -1) { Random.InitState(_currentSeed); return; }
 
         if (_seed == "") {
             _currentSeed = Random.Range(0, int.MaxValue);
@@ -395,21 +416,12 @@ public class LevelGenerator : MonoBehaviour {
 
     void InstantiateLevel(in Dictionary<Vector2Int, RoomData> currentFloor) {
         foreach (var room in currentFloor) {
-            GameObject newRoom;
-            switch (room.Value.Type) {
-                default:
-                case RoomType.NONE:
-                case RoomType.RIDDLE:
-                    newRoom = Instantiate(_riddleRoom.gameObject, new Vector3(room.Key.x * _roomSize.x, room.Key.y * _roomSize.y, 0), Quaternion.identity);
-                    break;
-                case RoomType.SECRET:
-                    newRoom = Instantiate(_secretRoom.gameObject, new Vector3(room.Key.x * _roomSize.x, room.Key.y * _roomSize.y, 0), Quaternion.identity);
-                    break;
-                case RoomType.OBJECT:
-                    newRoom = Instantiate(_objectRoom.gameObject, new Vector3(room.Key.x * _roomSize.x, room.Key.y * _roomSize.y, 0), Quaternion.identity);
-                    break;
-            }
-            newRoom.transform.parent = _grid.transform;
+            RexRoom newRoom = room.Value.Type switch {
+                RoomType.SECRET => Instantiate(_secretRoom, _grid.transform),
+                RoomType.OBJECT => Instantiate(_objectRoom, _grid.transform),
+                _ => Instantiate(_riddleRoom, _grid.transform),
+            };
+            newRoom.transform.position = new Vector3(room.Key.x * _roomSize.x, room.Key.y * _roomSize.y, 0);
             Vector3 adapt = new Vector3(-1, -1, 0);
             for (int i = 0; i < 4; i++) {
                 RexDoors door;
@@ -422,6 +434,7 @@ public class LevelGenerator : MonoBehaviour {
                     if (room.Value.LeverGates[Tools.ToGate(i)]) {
                         RexLever lever = Instantiate(_leverPrefab, door.gameObject.transform.position + Vector3.RotateTowards(new Vector3(Tools.ToDirection(i).x, Tools.ToDirection(i).y, 0), Vector3.back, Mathf.PI / -2, 0) - new Vector3(Tools.ToDirection(i).x, Tools.ToDirection(i).y, 0), Quaternion.identity, newRoom.transform.GetChild(2));
                         lever.AddDoor(door);
+                        newRoom.DOORS.Add(door);
                     }
                 } else {
                     Instantiate(_wallPrefab, newRoom.transform.position + new Vector3(Tools.ToDirection(i).x * (_roomSize.x + adapt.x), Tools.ToDirection(i).y * (_roomSize.y + adapt.y), 0) / 2, Quaternion.identity, newRoom.transform.GetChild(1));
@@ -429,6 +442,32 @@ public class LevelGenerator : MonoBehaviour {
 
             }
         }
+
+        _grid.GetComponent<LevelManager>().LevelGenerated();
+    }
+
+    private Dictionary<Vector2Int, RoomData> AddObjectRoom(in Dictionary<Vector2Int, RoomData> currentFloor) {
+        Dictionary<Vector2Int, RoomData> floor = new Dictionary<Vector2Int, RoomData>(currentFloor);
+
+        List<KeyValuePair<Vector2Int, RoomData>> emptyRooms = floor.Where((KeyValuePair<Vector2Int, RoomData> room) => room.Value.Type == RoomType.NONE).ToList();
+        emptyRooms[Random.Range(0, emptyRooms.Count)].Value.Type = RoomType.OBJECT;
+        return floor;
+    }
+
+    private Dictionary<Vector2Int, RoomData> AddRandomLever(in Dictionary<Vector2Int, RoomData> currentFloor) {
+        Dictionary<Vector2Int, RoomData> floor = new Dictionary<Vector2Int, RoomData>(currentFloor);
+
+        foreach (KeyValuePair<Vector2Int, RoomData> room in floor) {
+            for (int i = 0; i < bint4.Length; i++) {
+                if (Tools.Ponder(_leverChance, 1 - _leverChance) == 0) {
+                    if (room.Value.Gates[Tools.ToGate(i)] && !room.Value.BlockingGates[Tools.ToGate(i)] && !room.Value.SecretGates[Tools.ToGate(i)]) {
+                        room.Value.LeverGates[Tools.ToGate(i)] = true;
+                    }
+                }
+            }
+        }
+
+        return floor;
     }
 }
 

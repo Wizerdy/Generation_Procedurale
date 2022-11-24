@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicBalls : MonoBehaviour
+public class MagicBalls : RexPuzzle
 {
     public Color baseColor;
     public Color flashColor;
     public int flashDuration;
-    [SerializeField] List<RexDoors> _doors = new List<RexDoors>();
     private List<Ball> balls = new List<Ball>();
     private bool winGame = false;
 
@@ -67,23 +66,5 @@ public class MagicBalls : MonoBehaviour
             }
         }
         return true;
-    }
-
-    public void SwitchDoor() {
-        for (int i = 0; i < _doors.Count; i++) {
-            _doors[i].ChangeState();
-        }
-    }
-
-    public void AddDoor(RexDoors door) {
-        if (!_doors.Contains(door)) {
-            _doors.Add(door);
-        }
-    }
-
-    public void RemoveDoor(RexDoors door) {
-        if (_doors.Contains(door)) {
-            _doors.Remove(door);
-        }
     }
 }
