@@ -51,28 +51,80 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 4c9c89301cb41314cafa02dc857634b0, type: 3}
+  - {fileID: 21300000, guid: 8cf56f01d2e4ec440a5a581ec4d5a7ac, type: 3}
+  - {fileID: 21300000, guid: f601caa162311d0438bdc892415e6bdb, type: 3}
   - {fileID: 21300000, guid: cf315a12087b67c4dab44aecb3d72b9d, type: 3}
+  - {fileID: 21300000, guid: 92036042f0803e841b42532acee00cdc, type: 3}
   - {fileID: 21300000, guid: f3ef024444d630c48a84217d21dccdbc, type: 3}
+  - {fileID: 21300000, guid: 450954b443867f4438cd28fa8d9f5fa9, type: 3}
+  - {fileID: -1013040402, guid: 0d62eed4d83c0ec46924b34cb5e5774a, type: 3}
+  - {fileID: -1340282645, guid: 0d62eed4d83c0ec46924b34cb5e5774a, type: 3}
+  - {fileID: -67050828, guid: 0d62eed4d83c0ec46924b34cb5e5774a, type: 3}
+  - {fileID: 852977255, guid: 0d62eed4d83c0ec46924b34cb5e5774a, type: 3}
+  - {fileID: -472172811, guid: 0d62eed4d83c0ec46924b34cb5e5774a, type: 3}
+  - {fileID: -1724298944, guid: 0d62eed4d83c0ec46924b34cb5e5774a, type: 3}
+  - {fileID: -733879727, guid: 0d62eed4d83c0ec46924b34cb5e5774a, type: 3}
+  - {fileID: 872569232, guid: 0d62eed4d83c0ec46924b34cb5e5774a, type: 3}
+  - {fileID: 1163552715, guid: 0d62eed4d83c0ec46924b34cb5e5774a, type: 3}
+  - {fileID: 1979695785, guid: 0d62eed4d83c0ec46924b34cb5e5774a, type: 3}
+  - {fileID: 21300000, guid: d18895963f54de349ab8d93289b28e52, type: 3}
+  - {fileID: 21300000, guid: 5ccc15973ffeb0147b7d67b06094ffbc, type: 3}
   - {fileID: 877609874, guid: f0361519cb1e22347a4a01a025eb231a, type: 3}
   - {fileID: 2025124053, guid: f0361519cb1e22347a4a01a025eb231a, type: 3}
+  - {fileID: 21300000, guid: f105436ac8ca6794c8dcdb6aefe85f1c, type: 3}
+  - {fileID: 21300000, guid: b8e62ebae59daed49833aca057ef0d83, type: 3}
   - {fileID: 539616677, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
   - {fileID: -526778784, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
   - {fileID: -802962152, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
   - {fileID: -1912284945, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
   - {fileID: 726775630, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
   - {fileID: -295721097, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
+  - {fileID: 21300000, guid: 4c17550b505372141823ccd6d06807b1, type: 3}
+  - {fileID: 21300000, guid: cf1a7d3b838d6e2459db300859394272, type: 3}
+  - {fileID: 21300000, guid: 91b6524c66d1c874aac387a7bd5b5f89, type: 3}
+  - {fileID: 21300000, guid: 5cac428ccbbfca94e82ef041a07ffce0, type: 3}
+  - {fileID: 21300000, guid: 77dddaec4e2e94046980f037c38ce870, type: 3}
+  - {fileID: 21300000, guid: 06e2409e568b5fc43b0f6dcebfcf71f4, type: 3}
+  - {fileID: 21300000, guid: 8fe3ff3fa4412cf48a2dd58add971bce, type: 3}
   - {fileID: -873325267, guid: eb4b67dffc445c246a8b3a050414235b, type: 3}
   m_PackedSpriteNamesToIndex:
+  - TankCannon
+  - Floor1
+  - GoblinHead
   - Heart
+  - Crate
   - PlaceHolder
+  - Lantern
+  - TankCannon_Shoot_anim_9
+  - TankCannon_Shoot_anim_8
+  - TankCannon_Shoot_anim_5
+  - TankCannon_Shoot_anim_4
+  - TankCannon_Shoot_anim_7
+  - TankCannon_Shoot_anim_6
+  - TankCannon_Shoot_anim_1
+  - TankCannon_Shoot_anim_0
+  - TankCannon_Shoot_anim_3
+  - TankCannon_Shoot_anim_2
+  - BarbedWire
+  - BrickWall
   - props_0
   - props_1
+  - Bullet 1
+  - LanternLamp
   - tilemapFloor_4
   - tilemapFloor_5
   - tilemapFloor_2
   - tilemapFloor_3
   - tilemapFloor_0
   - tilemapFloor_1
+  - Floor4
+  - LanternSocle
+  - Floor2
+  - Floor3
+  - ChenilleMarque
+  - TankBody
+  - Bullet
   - Triangle_0
   m_RenderDataMap: {}
   m_Tag: Atlas

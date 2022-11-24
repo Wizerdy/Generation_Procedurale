@@ -8,10 +8,11 @@ public class PlayerController : MonoBehaviour
     private Life life;
     private Rigidbody2DMovement movement;
     private Shooter[] shooters;
+    [SerializeField] GameObject cannons;
 
     private void Awake()
     {
-        shooters = GetComponentsInChildren<Shooter>();
+        shooters = cannons.GetComponentsInChildren<Shooter>();
         life = GetComponent<Life>();
         movement = GetComponent<Rigidbody2DMovement>();
     }
@@ -21,9 +22,17 @@ public class PlayerController : MonoBehaviour
         life.onDie = OnDie();
     }
 
-    public void OnMove(InputAction.CallbackContext input)
+    private void FixedUpdate() {
+        cannons.transform.position = transform.position;
+    }
+
+    public void OnMove(InputAction.CallbackContext input) 
     {
-        movement.SetDirection(input.ReadValue<Vector2>());
+        var inputDirection = input.ReadValue<Vector2>();
+        movement.SetDirection(inputDirection);
+        if (input.performed) {
+            transform.up = inputDirection;
+        }
     }
 
     public void OnShoot(InputAction.CallbackContext input)
@@ -31,8 +40,9 @@ public class PlayerController : MonoBehaviour
         if (input.performed)
         {
             var inputDirection = input.ReadValue<Vector2>();
-            if (inputDirection.sqrMagnitude <= 1)
-                transform.up = inputDirection;
+            if (inputDirection.sqrMagnitude <= 1) {
+                cannons.transform.up = inputDirection;
+            }
             foreach (var shooter in shooters)
             {
                 shooter.StartShooting();
