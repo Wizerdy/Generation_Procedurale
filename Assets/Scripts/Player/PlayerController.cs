@@ -9,12 +9,14 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2DMovement movement;
     private Shooter[] shooters;
     [SerializeField] GameObject cannons;
+    private PlayerWeapons playerWeapon;
 
     private void Awake()
     {
         shooters = cannons.GetComponentsInChildren<Shooter>();
         life = GetComponent<Life>();
         movement = GetComponent<Rigidbody2DMovement>();
+        playerWeapon = GetComponent<PlayerWeapons>();
     }
 
     private void Start()
@@ -54,6 +56,18 @@ public class PlayerController : MonoBehaviour
             {
                 shooter.StopShooting();
             }
+        }
+    }
+
+    public void OnLeftWeaponDrop(InputAction.CallbackContext input) {
+        if (playerWeapon.leftWeapon != WeaponType.None) {
+            playerWeapon.DropLeftWeapon();
+        }
+    }
+
+    public void OnRightWeaponDrop(InputAction.CallbackContext input) {
+        if (playerWeapon.rightWeapon != WeaponType.None) {
+            playerWeapon.DropRightWeapon();
         }
     }
 

@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 785693504}
   - component: {fileID: 2081491002}
   - component: {fileID: 2081491011}
+  - component: {fileID: 1826100245}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -291,6 +292,38 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 85b78d03-ae04-40bb-bf2a-64434d5573f8
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6519666751308008164}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnLeftWeaponDrop
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ea4eeed5-f5a3-4b16-83e2-80685a729e5a
+    m_ActionName: Player/DropLeftWeapon[/Keyboard/1]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6519666751308008164}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnRightWeaponDrop
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6c5c097e-b294-4488-97ca-77d93b9541d2
+    m_ActionName: Player/DropRightWeapon[/Keyboard/2]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -308,7 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb09905c1d4494398edf782503cfe3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannons: {fileID: 0}
+  cannons: {fileID: 3045121902437206205}
 --- !u!114 &1402205489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +384,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onHit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2081491002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,6 +412,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invincibilityTime: 1
+--- !u!114 &1826100245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6388184427874494322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd246daa1b80854a97bb3b61ee60630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftWeapon: 0
+  rightWeapon: 0
+  thunderBall: {fileID: 2070074952169681885, guid: da16e8c167d22cf4aa03a4c829b8e5ba, type: 3}
+  ironBall: {fileID: 7019878425220584389, guid: a3b47f61f23d5e442821a77cdb22aa37, type: 3}
+  arrow: {fileID: 2754283991688833359, guid: 0653653bfbf92f2458d1036b34042c4f, type: 3}
 --- !u!1001 &6764685659107537836
 PrefabInstance:
   m_ObjectHideFlags: 0
