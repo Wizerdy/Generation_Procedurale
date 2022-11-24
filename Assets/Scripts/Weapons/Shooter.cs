@@ -9,6 +9,7 @@ public class Shooter : MonoBehaviour
     public Animator anim;
     public AnimationClip shootingAnim;
     public ParticleSystem psSmoke;
+    public WeaponType typeToShoot;
 
     private bool isShooting;
     private Vector2 lastDirection;
@@ -62,6 +63,7 @@ public class Shooter : MonoBehaviour
         yield return new WaitForSeconds(time);
         var bulletPosition = transform.position;
         var newBullet = Instantiate(bullet, bulletPosition, Quaternion.identity, bulletsParent);
+        newBullet.GetComponent<BulletController>().BulletInit(typeToShoot);
         newBullet.up = transform.up;
         lastShootTime = Time.time;
         cor = null;

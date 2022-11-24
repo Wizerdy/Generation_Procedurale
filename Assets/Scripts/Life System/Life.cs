@@ -8,6 +8,8 @@ public class Life : MonoBehaviour
     public uint startLife;
     public UnityEvent<uint> onDamageTaken;
     public UnityEvent<uint> onHit;
+    public UnityEvent<Transform> onHitWithTransform;
+
 
     public uint currentLife { get; private set; }
     public IEnumerator onDie;
@@ -17,6 +19,31 @@ public class Life : MonoBehaviour
     private void Start()
     {
         currentLife = startLife;
+    }
+
+    public void OnCollision(Transform colTransform, WeaponType type) {
+        if (colTransform.gameObject.tag == "Box") {
+            if (type != WeaponType.IronBall) {
+                colTransform.GetComponent<Life>().Heal(1);
+            }
+        }
+
+        if (colTransform.gameObject.tag == "SimonLight") {
+            if (type == WeaponType.ThunderBall) {
+                colTransform.GetComponent<SimonLight>().LightTrigger();
+            }
+        }
+
+
+        if (colTransform.gameObject.tag == "Ball") {
+            if (type == WeaponType.Arrow) {
+                colTransform.GetComponent<Ball>().OnHit();
+            }
+        }
+
+    }
+    public void Heal(uint ammount) {
+        currentLife += ammount;
     }
 
     public void TakeDamage(uint damage)

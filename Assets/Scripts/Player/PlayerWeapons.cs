@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum WeaponType {
     None,
@@ -17,21 +18,12 @@ public class PlayerWeapons : MonoBehaviour
     [SerializeField] private Weapon ironBall;
     [SerializeField] private Weapon arrow;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public UnityEvent<WeaponType> onWeaponPickUp;
 
     public bool PickUpWeapon(WeaponType type) {
         if (leftWeapon == WeaponType.None) {
             leftWeapon = type;
+            onWeaponPickUp.Invoke(type);
             return true;
         }
 
