@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 252870007463594089, guid: 70201e4c6e94fb341ad7b999b79105ad, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3835454865638274991, guid: 70201e4c6e94fb341ad7b999b79105ad, type: 3}
       propertyPath: m_Tiles.Array.size
       value: 1
@@ -18,11 +22,11 @@ PrefabInstance:
     - target: {fileID: 3835454865638274991, guid: 70201e4c6e94fb341ad7b999b79105ad, type: 3}
       propertyPath: m_TileAssetArray.Array.data[0].m_Data
       value: 
-      objectReference: {fileID: 11400000, guid: a1115315590a5254a8955b11b583b9fd, type: 2}
+      objectReference: {fileID: 11400000, guid: 8f4434f93ea0db34f849ddbf809b7a04, type: 2}
     - target: {fileID: 3835454865638274991, guid: 70201e4c6e94fb341ad7b999b79105ad, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[0].m_Data
       value: 
-      objectReference: {fileID: 726775630, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
+      objectReference: {fileID: 21300000, guid: 5ccc15973ffeb0147b7d67b06094ffbc, type: 3}
     - target: {fileID: 3835454865638274991, guid: 70201e4c6e94fb341ad7b999b79105ad, type: 3}
       propertyPath: m_TileColorArray.Array.data[0].m_Data.a
       value: 1

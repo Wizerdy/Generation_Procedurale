@@ -21,6 +21,7 @@ public class Life : MonoBehaviour
 
     public void TakeDamage(uint damage)
     {
+        Debug.Log("dead " + name);
         onHit.Invoke(damage);
         if (!isAlive || isInvincible) return;
         if (damage > currentLife)

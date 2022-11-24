@@ -79,6 +79,14 @@ public class PlayerController : MonoBehaviour
         life.TakeDamage(life.currentLife);
     }
 
+    public void OnChangeWorld(InputAction.CallbackContext input) {
+        if (!input.performed) {
+            return;
+        }
+
+        FindObjectOfType<GameManager>().ChangeWorld(this);
+    }
+
     private IEnumerator OnDie()
     {
         GetComponent<PlayerInput>().SwitchCurrentActionMap("UI");

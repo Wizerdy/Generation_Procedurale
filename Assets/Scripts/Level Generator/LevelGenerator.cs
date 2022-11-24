@@ -56,11 +56,20 @@ public class LevelGenerator : MonoBehaviour {
         if (_instantiate) {
             InstantiateLevel(_floor);
         }
+
+        GenerateTheFloor(Vector2Int.up * 10, false);
+        if (_instantiate) {
+            InstantiateLevel(_floor);
+        }
     }
 
-    public void GenerateTheFloor(Vector2Int position) {
-        Clear();
-        _currentSeed = -1;
+    public void GenerateTheFloor(Vector2Int position, bool clear = true) {
+        if (clear) {
+            Clear();
+            _currentSeed = -1;
+        }
+
+        LoadSeed(_seed);
 
         _startPosition = position;
         try {
@@ -94,8 +103,6 @@ public class LevelGenerator : MonoBehaviour {
 
     public Dictionary<Vector2Int, RoomData> GenerateFloor(Vector2Int startPosition, int size, in Dictionary<Vector2Int, RoomData> currentFloor = null) {
         Init();
-
-        LoadSeed(_seed);
 
         List<(Vector2Int, Gate)> toSpawn = new List<(Vector2Int, Gate)>();
         Vector2Int currentPosition = startPosition;
@@ -392,7 +399,7 @@ public class LevelGenerator : MonoBehaviour {
     }
 
     private void LoadSeed(string seed) {
-        if (_currentSeed != -1) { return; }
+        if (_currentSeed != -1) { Random.InitState(_currentSeed); return; }
 
         if (_seed == "") {
             _currentSeed = Random.Range(0, int.MaxValue);

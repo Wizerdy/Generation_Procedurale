@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2070074952169681887}
   - component: {fileID: 2070074952169681886}
   - component: {fileID: 2070074952169681885}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: ThunderBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,3 +127,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  cooldDownTime: 2

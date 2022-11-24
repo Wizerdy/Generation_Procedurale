@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2754283991688833356}
   - component: {fileID: 2754283991688833359}
   - component: {fileID: 2754283991688833358}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
+  cooldDownTime: 2
 --- !u!70 &2754283991688833358
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

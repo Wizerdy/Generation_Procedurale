@@ -324,6 +324,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6c5c097e-b294-4488-97ca-77d93b9541d2
     m_ActionName: Player/DropRightWeapon[/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6519666751308008164}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnChangeWorld
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3805978d-1f1c-432e-a330-b2d50ca22689
+    m_ActionName: Player/ChangeWorld[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
