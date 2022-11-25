@@ -97,6 +97,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 3e80494c128f34442bf904e620f9ccc6, type: 3}
   - {fileID: 21300000, guid: 5cac428ccbbfca94e82ef041a07ffce0, type: 3}
   - {fileID: 21300000, guid: 77dddaec4e2e94046980f037c38ce870, type: 3}
+  - {fileID: 21300000, guid: 8ec41becccceedb45a7c9dda59b186ba, type: 3}
   - {fileID: 21300000, guid: 06e2409e568b5fc43b0f6dcebfcf71f4, type: 3}
   - {fileID: 21300000, guid: 8fe3ff3fa4412cf48a2dd58add971bce, type: 3}
   - {fileID: -873325267, guid: eb4b67dffc445c246a8b3a050414235b, type: 3}
@@ -147,6 +148,7 @@ SpriteAtlas:
   - RedButton
   - Floor3
   - ChenilleMarque
+  - image
   - TankBody
   - Bullet
   - Triangle_0

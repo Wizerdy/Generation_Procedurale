@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3770167269791445653}
   - component: {fileID: 6793493969413125241}
   - component: {fileID: 5883204693574257954}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,10 +58,10 @@ Tilemap:
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 2a11b4b782d859842be86eff657c0407, type: 2}
+    m_Data: {fileID: 11400000, guid: 081ed1f3b41bd6c45bff5668670de1be, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 1
-    m_Data: {fileID: -295721097, guid: a67a22ca3540fd045bf4129b1d145c41, type: 3}
+    m_Data: {fileID: 21300000, guid: 8ec41becccceedb45a7c9dda59b186ba, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 1
     m_Data:
@@ -83,7 +83,7 @@ Tilemap:
       e33: 1
   m_TileColorArray:
   - m_RefCount: 1
-    m_Data: {r: 0, g: 0.0816164, b: 1, a: 1}
+    m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -170,8 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileMap: {fileID: 3835454865638274991}
-  _openTile: {fileID: 11400000, guid: 6a4e204d43d3d4b42993928152294ca3, type: 2}
-  _closedTile: {fileID: 11400000, guid: 7ac79720f02d14140b7208dd7d969af4, type: 2}
+  _closedTile: {fileID: 11400000, guid: 081ed1f3b41bd6c45bff5668670de1be, type: 2}
   _isOpen: 0
 --- !u!61 &6793493969413125241
 BoxCollider2D:

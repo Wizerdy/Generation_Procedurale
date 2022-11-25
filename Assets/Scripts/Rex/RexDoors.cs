@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class RexDoors : MonoBehaviour {
     [SerializeField] Tilemap _tileMap;
-    [SerializeField] Tile _openTile;
     [SerializeField] Tile _closedTile;
     [SerializeField] bool _isOpen;
     Collider2D _collider;
@@ -38,7 +37,7 @@ public class RexDoors : MonoBehaviour {
     }
 
     void PlaceTile() {
-        _tileMap.SetTile(Vector3Int.zero, _isOpen ? _openTile : _closedTile);
+        _tileMap.SetTile(Vector3Int.zero, _isOpen ? null : _closedTile);
     }
 
     void UpdateCollider() {
