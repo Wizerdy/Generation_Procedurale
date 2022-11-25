@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     private Life life;
     private Rigidbody2DMovement movement;
     private Shooter[] shooters;
-    [SerializeField] private Shooter mainShooter;
     [SerializeField] GameObject cannons;
     private PlayerWeapons playerWeapon;
     private bool isFiringFromLeftHand = true;
@@ -41,21 +40,22 @@ public class PlayerController : MonoBehaviour
 
     public void OnShoot(InputAction.CallbackContext input)
     {
-        if (playerWeapon.leftWeapon != WeaponType.None || playerWeapon.rightWeapon != WeaponType.None) {
+        {
             if (input.performed) {
                 var inputDirection = input.ReadValue<Vector2>();
                 if (inputDirection.sqrMagnitude <= 1) {
                     cannons.transform.up = inputDirection;
                 }
-                mainShooter.StartShooting();
-                //foreach (var shooter in shooters) {
-                //    shooter.StartShooting();
-                //}
+                if (playerWeapon.leftWeapon != WeaponType.None || playerWeapon.rightWeapon != WeaponType.None) {
+                    foreach (var shooter in shooters) {
+                        shooter.StartShooting();
+                    }
+                }
+
             } else if (input.canceled) {
-                mainShooter.StopShooting();
-                //foreach (var shooter in shooters) {
-                //    shooter.StopShooting();
-                //}
+                foreach (var shooter in shooters) {
+                    shooter.StopShooting();
+                }
             }
         }
     }
@@ -64,11 +64,10 @@ public class PlayerController : MonoBehaviour
         if (playerWeapon.leftWeapon != WeaponType.None) {
             playerWeapon.DropLeftWeapon();
             if (playerWeapon.rightWeapon != WeaponType.None) {
-                mainShooter.typeToShoot = playerWeapon.rightWeapon;
 
-                //foreach (var shooter in shooters) {
-                //    shooter.typeToShoot = playerWeapon.rightWeapon;
-                //}
+                foreach (var shooter in shooters) {
+                    shooter.typeToShoot = playerWeapon.rightWeapon;
+                }
             }
         }
     }
@@ -77,10 +76,9 @@ public class PlayerController : MonoBehaviour
         if (playerWeapon.rightWeapon != WeaponType.None) {
             playerWeapon.DropRightWeapon();
             if (playerWeapon.leftWeapon != WeaponType.None) {
-                mainShooter.typeToShoot = playerWeapon.leftWeapon;
-                //foreach (var shooter in shooters) {
-                //    shooter.typeToShoot = playerWeapon.leftWeapon;
-                //}
+                foreach (var shooter in shooters) {
+                    shooter.typeToShoot = playerWeapon.leftWeapon;
+                }
             }
         }
     }
@@ -94,19 +92,17 @@ public class PlayerController : MonoBehaviour
     public void HandSwitch(InputAction.CallbackContext input) {
         if (isFiringFromLeftHand && playerWeapon.rightWeapon != WeaponType.None) {
             isFiringFromLeftHand = false;
-            mainShooter.typeToShoot = playerWeapon.leftWeapon;
-            //foreach (var shooter in shooters) {
-            //    shooter.typeToShoot = playerWeapon.leftWeapon;
-            //}
+            foreach (var shooter in shooters) {
+                shooter.typeToShoot = playerWeapon.leftWeapon;
+            }
             return;
         }
         if (!isFiringFromLeftHand && playerWeapon.leftWeapon != WeaponType.None) {
             isFiringFromLeftHand = true;
-            mainShooter.typeToShoot = playerWeapon.rightWeapon;
 
-            //foreach (var shooter in shooters) {
-            //    shooter.typeToShoot = playerWeapon.rightWeapon;
-            //}
+            foreach (var shooter in shooters) {
+                shooter.typeToShoot = playerWeapon.rightWeapon;
+            }
             return;
         }
     }
