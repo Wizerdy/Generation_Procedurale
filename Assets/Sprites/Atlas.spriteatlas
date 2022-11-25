@@ -52,11 +52,14 @@ SpriteAtlas:
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 4c9c89301cb41314cafa02dc857634b0, type: 3}
+  - {fileID: 21300000, guid: 9c94e5c0542c68f499bfe7d3628d0fb9, type: 3}
   - {fileID: 21300000, guid: 8cf56f01d2e4ec440a5a581ec4d5a7ac, type: 3}
+  - {fileID: 21300000, guid: f4e37a51b9c99b147a51ee63f40e3a56, type: 3}
   - {fileID: 21300000, guid: f601caa162311d0438bdc892415e6bdb, type: 3}
   - {fileID: 21300000, guid: cf315a12087b67c4dab44aecb3d72b9d, type: 3}
   - {fileID: 21300000, guid: 92036042f0803e841b42532acee00cdc, type: 3}
   - {fileID: 21300000, guid: 1b3a3462fc18cbf458ec000c09f0d8bf, type: 3}
+  - {fileID: 21300000, guid: 6e9e09337ec3bfa4f975e17c95c8ab90, type: 3}
   - {fileID: 21300000, guid: ec6351a34cf465c4a8dfd0fc94cb5854, type: 3}
   - {fileID: 21300000, guid: 3de25dd367d96f84788cfa3fc4efd8bb, type: 3}
   - {fileID: 21300000, guid: f3ef024444d630c48a84217d21dccdbc, type: 3}
@@ -99,11 +102,14 @@ SpriteAtlas:
   - {fileID: -873325267, guid: eb4b67dffc445c246a8b3a050414235b, type: 3}
   m_PackedSpriteNamesToIndex:
   - TankCannon
+  - FireBall90
   - Floor1
+  - EnergyBall90png
   - GoblinHead
   - Heart
   - Crate
   - EnergyBall
+  - BrickWallPlant
   - ExitSign
   - FireBall
   - PlaceHolder
