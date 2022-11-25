@@ -8,7 +8,7 @@ public class RexDoors : MonoBehaviour {
     [SerializeField] Tile _closedTile;
     [SerializeField] Tile _wallTile;
     [SerializeField] bool _isOpen;
-    [SerializeField] bool _isSecret = false;
+    [SerializeField] public bool _isSecret = false;
     Collider2D _collider;
     public bool IsOpen => _isOpen;
 

@@ -443,6 +443,9 @@ public class LevelGenerator : MonoBehaviour {
                         RexLever lever = Instantiate(_leverPrefab, door.gameObject.transform.position + Vector3.RotateTowards(new Vector3(Tools.ToDirection(i).x, Tools.ToDirection(i).y, 0), Vector3.back, Mathf.PI / -2, 0) - new Vector3(Tools.ToDirection(i).x, Tools.ToDirection(i).y, 0), Quaternion.identity, newRoom.transform.GetChild(2));
                         lever.AddDoor(door);
                         newRoom.DOORS.Add(door);
+                        if(room.Value.Type == RoomType.SECRET) {
+                            door._isSecret = true;
+                        }
                     }
                 } else {
                     Instantiate(_wallPrefab, newRoom.transform.position + new Vector3(Tools.ToDirection(i).x * (_roomSize.x + adapt.x), Tools.ToDirection(i).y * (_roomSize.y + adapt.y), 0) / 2, Quaternion.identity, newRoom.transform.GetChild(1));
