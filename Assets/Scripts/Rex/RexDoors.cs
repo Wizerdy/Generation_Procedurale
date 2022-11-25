@@ -6,7 +6,9 @@ using UnityEngine.Tilemaps;
 public class RexDoors : MonoBehaviour {
     [SerializeField] Tilemap _tileMap;
     [SerializeField] Tile _closedTile;
+    [SerializeField] Tile _wallTile;
     [SerializeField] bool _isOpen;
+    [SerializeField] bool _isSecret = false;
     Collider2D _collider;
     public bool IsOpen => _isOpen;
 
@@ -37,10 +39,16 @@ public class RexDoors : MonoBehaviour {
     }
 
     void PlaceTile() {
-        _tileMap.SetTile(Vector3Int.zero, _isOpen ? null : _closedTile);
+        _tileMap.SetTile(Vector3Int.zero, _isOpen ? null : _isSecret ? _wallTile: _closedTile);
     }
 
     void UpdateCollider() {
         _collider.enabled = !_isOpen;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (_isSecret && collision.gameObject.CompareTag("Ball")) {
+            Destroy(gameObject);
+        }
     }
 }

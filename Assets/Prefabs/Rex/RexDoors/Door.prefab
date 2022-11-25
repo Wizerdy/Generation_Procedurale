@@ -171,7 +171,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tileMap: {fileID: 3835454865638274991}
   _closedTile: {fileID: 11400000, guid: 081ed1f3b41bd6c45bff5668670de1be, type: 2}
+  _wallTile: {fileID: 11400000, guid: 44cc61a179d8a03449763b15e0bf3a50, type: 2}
   _isOpen: 0
+  _isSecret: 0
 --- !u!61 &6793493969413125241
 BoxCollider2D:
   m_ObjectHideFlags: 0
