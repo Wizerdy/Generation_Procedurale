@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum RoomType {
-    NONE, RIDDLE, SECRET, OBJECT
+    NONE, RIDDLE, SECRET, OBJECT, EMPTY_OBJECT
 }
 
 [System.Serializable]

@@ -31,8 +31,8 @@ public class Timer : MonoBehaviour
         }
     }
 
-    public void StartTimer() {
-        isTimerActive = true;
+    public void StartTimer(bool state) {
+        isTimerActive = state;
     }
 
     public void StopTimer() {

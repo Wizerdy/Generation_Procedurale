@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class DestroyOnCollision : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision) {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

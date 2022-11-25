@@ -118,6 +118,7 @@ public class LevelGenerator : MonoBehaviour {
         if (!floor.ContainsKey(startPosition)) {
             // Start Room
             startRoom = new RoomData(_startingRooms[Random.Range(0, _startingRooms.Count)]);
+            startRoom.Type = RoomType.OBJECT;
         } else {
             startRoom = new RoomData(floor[startPosition]);
             floor.Remove(startPosition);
@@ -311,7 +312,7 @@ public class LevelGenerator : MonoBehaviour {
 
         if (emptyRoom.Item2 == null) { return null; }
 
-        emptyRoom.Item2.Type = RoomType.OBJECT;
+        emptyRoom.Item2.Type = RoomType.EMPTY_OBJECT;
 
         Vector2Int? output = null;
         for (int i = 0; i < 4; i++) {
@@ -419,8 +420,15 @@ public class LevelGenerator : MonoBehaviour {
             RexRoom newRoom = room.Value.Type switch {
                 RoomType.SECRET => Instantiate(_secretRoom, _grid.transform),
                 RoomType.OBJECT => Instantiate(_objectRoom, _grid.transform),
+                RoomType.EMPTY_OBJECT => Instantiate(_objectRoom, _grid.transform),
                 _ => Instantiate(_riddleRoom, _grid.transform),
             };
+
+            if (room.Value.Type == RoomType.EMPTY_OBJECT) {
+                newRoom.GetComponent<ObjectRoom>().empty = true;
+            }
+
+            if (newRoom)
             newRoom.transform.position = new Vector3(room.Key.x * _roomSize.x, room.Key.y * _roomSize.y, 0);
             Vector3 adapt = new Vector3(-1, -1, 0);
             for (int i = 0; i < 4; i++) {
@@ -462,6 +470,7 @@ public class LevelGenerator : MonoBehaviour {
                 if (Tools.Ponder(_leverChance, 1 - _leverChance) == 0) {
                     if (room.Value.Gates[Tools.ToGate(i)] && !room.Value.BlockingGates[Tools.ToGate(i)] && !room.Value.SecretGates[Tools.ToGate(i)]) {
                         room.Value.LeverGates[Tools.ToGate(i)] = true;
+                        floor[room.Key + Tools.ToDirection(i)].LeverGates[Tools.ToGate((i + 2) % 4)] = true;
                     }
                 }
             }
