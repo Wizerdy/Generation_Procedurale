@@ -25,7 +25,5 @@ public class BoxesManager : RexPuzzle
     }
     public void OnWinningBoxeDestroy() {
         SwitchDoor();
-
-        Debug.Log("BOX PUZZLE WIN");
     }
 }

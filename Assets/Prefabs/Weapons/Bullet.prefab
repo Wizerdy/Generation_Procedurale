@@ -14,9 +14,8 @@ GameObject:
   - component: {fileID: 8776810948865090951}
   - component: {fileID: 2793912637471948836}
   - component: {fileID: 8265584397746025040}
-  - component: {fileID: 5429550406906552165}
   - component: {fileID: 1701375715172481772}
-  - component: {fileID: 6605107484982768261}
+  - component: {fileID: 5429550406906552165}
   m_Layer: 11
   m_Name: Bullet
   m_TagString: Untagged
@@ -140,6 +139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a294757b76475eb8f3724e0b1d8d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
+  bullet: {fileID: 21300000, guid: f105436ac8ca6794c8dcdb6aefe85f1c, type: 3}
+  thunder: {fileID: 21300000, guid: 1b3a3462fc18cbf458ec000c09f0d8bf, type: 3}
+  iron: {fileID: 21300000, guid: 3de25dd367d96f84788cfa3fc4efd8bb, type: 3}
 --- !u!114 &8265584397746025040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,20 +156,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
---- !u!114 &5429550406906552165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5485737571027047290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 888d3fdc8fcc4273be4210c733dd14aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damageDelay: 0
-  damageOnTouch: 1
 --- !u!114 &1701375715172481772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +176,10 @@ MonoBehaviour:
   onHit:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6605107484982768261
+  onHitWithTransform:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &5429550406906552165
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,6 +188,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5485737571027047290}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dca56126f1474945b0982297598956f, type: 3}
+  m_Script: {fileID: 11500000, guid: 888d3fdc8fcc4273be4210c733dd14aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageDelay: 0
+  damageOnTouch: 1

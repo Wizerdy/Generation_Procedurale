@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1985498581}
   m_Layer: 8
   m_Name: Red
-  m_TagString: Untagged
+  m_TagString: SimonLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,19 +172,10 @@ MonoBehaviour:
       m_Calls: []
   onHit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 662943609150991294}
-        m_TargetAssemblyTypeName: SimonLight, Assembly-CSharp
-        m_MethodName: LightTrigger
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  onHitWithTransform:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1985498581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +207,7 @@ GameObject:
   - component: {fileID: 687803656}
   m_Layer: 8
   m_Name: Yellow
-  m_TagString: Untagged
+  m_TagString: SimonLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -371,19 +362,10 @@ MonoBehaviour:
       m_Calls: []
   onHit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 662943609254927950}
-        m_TargetAssemblyTypeName: SimonLight, Assembly-CSharp
-        m_MethodName: LightTrigger
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  onHitWithTransform:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &687803656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,7 +397,7 @@ GameObject:
   - component: {fileID: 368531092}
   m_Layer: 8
   m_Name: Blue
-  m_TagString: Untagged
+  m_TagString: SimonLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -570,19 +552,10 @@ MonoBehaviour:
       m_Calls: []
   onHit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 662943609506306045}
-        m_TargetAssemblyTypeName: SimonLight, Assembly-CSharp
-        m_MethodName: LightTrigger
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  onHitWithTransform:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &368531092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,7 +652,7 @@ GameObject:
   - component: {fileID: 2055189902}
   m_Layer: 8
   m_Name: Green
-  m_TagString: Untagged
+  m_TagString: SimonLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -834,19 +807,10 @@ MonoBehaviour:
       m_Calls: []
   onHit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 662943610251623780}
-        m_TargetAssemblyTypeName: SimonLight, Assembly-CSharp
-        m_MethodName: LightTrigger
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  onHitWithTransform:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2055189902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -878,7 +842,7 @@ GameObject:
   - component: {fileID: 6691714588378039571}
   m_Layer: 8
   m_Name: Purple
-  m_TagString: Untagged
+  m_TagString: SimonLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1033,19 +997,10 @@ MonoBehaviour:
       m_Calls: []
   onHit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 376177910385532431}
-        m_TargetAssemblyTypeName: SimonLight, Assembly-CSharp
-        m_MethodName: LightTrigger
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  onHitWithTransform:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6691714588378039571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1077,7 +1032,7 @@ GameObject:
   - component: {fileID: 3714710947233242969}
   m_Layer: 8
   m_Name: Orange
-  m_TagString: Untagged
+  m_TagString: SimonLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1232,19 +1187,10 @@ MonoBehaviour:
       m_Calls: []
   onHit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7237551133713690772}
-        m_TargetAssemblyTypeName: SimonLight, Assembly-CSharp
-        m_MethodName: LightTrigger
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  onHitWithTransform:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3714710947233242969
 MonoBehaviour:
   m_ObjectHideFlags: 0

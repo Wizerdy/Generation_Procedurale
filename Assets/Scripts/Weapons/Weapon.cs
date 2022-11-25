@@ -8,7 +8,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float cooldDownTime = 2.0f;
     private Collider2D col;
 
-    private void Start() {
+    private void Awake() {
         col = GetComponent<Collider2D>();
     }
 

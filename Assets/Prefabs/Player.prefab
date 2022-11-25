@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3476949167701808519
 Transform:
   m_ObjectHideFlags: 0
@@ -42,7 +42,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4570305563332787}
   - component: {fileID: 5496061598099591082}
-  - component: {fileID: 8327384588411489632}
   - component: {fileID: 5694164955336319886}
   - component: {fileID: -5258844116462403570}
   - component: {fileID: 6519666751308008164}
@@ -51,6 +50,7 @@ GameObject:
   - component: {fileID: 2081491002}
   - component: {fileID: 2081491011}
   - component: {fileID: 1826100245}
+  - component: {fileID: 1943738207}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -67,7 +67,7 @@ Transform:
   m_GameObject: {fileID: 6388184427874494322}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 0.75, y: 1.25, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3476949167701808519}
@@ -115,8 +115,8 @@ SpriteRenderer:
   m_SortingLayerID: 1028839893
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -873325267, guid: eb4b67dffc445c246a8b3a050414235b, type: 3}
-  m_Color: {r: 0.714047, g: 0.45361334, b: 0.8679245, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 06e2409e568b5fc43b0f6dcebfcf71f4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -126,34 +126,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &8327384588411489632
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6388184427874494322}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.4296875}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0, y: 0.4}
-      - {x: -0.48, y: -0.42}
-      - {x: 0.48, y: -0.42}
 --- !u!50 &5694164955336319886
 Rigidbody2D:
   serializedVersion: 4
@@ -340,6 +312,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3805978d-1f1c-432e-a330-b2d50ca22689
     m_ActionName: Player/ChangeWorld[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6519666751308008164}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: HandSwitch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 54afa5e8-85aa-48b5-b9c4-f5c27b9ced32
+    m_ActionName: Player/SwitchAmmo[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -357,7 +345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb09905c1d4494398edf782503cfe3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cannons: {fileID: 3045121902437206205}
+  mainShooter: {fileID: 0}
+  cannons: {fileID: 0}
 --- !u!114 &1402205489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,6 +392,9 @@ MonoBehaviour:
   onHit:
     m_PersistentCalls:
       m_Calls: []
+  onHitWithTransform:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2081491002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,6 +437,47 @@ MonoBehaviour:
   thunderBall: {fileID: 2070074952169681885, guid: da16e8c167d22cf4aa03a4c829b8e5ba, type: 3}
   ironBall: {fileID: 7019878425220584389, guid: a3b47f61f23d5e442821a77cdb22aa37, type: 3}
   arrow: {fileID: 2754283991688833359, guid: 0653653bfbf92f2458d1036b34042c4f, type: 3}
+  onWeaponPickUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6519666751308008164}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnPickUpWeapon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!61 &1943738207
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6388184427874494322}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0022018254, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.70495695, y: 1}
+  m_EdgeRadius: 0
 --- !u!1001 &6764685659107537836
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Door
+  - Box
+  - SimonLight
+  - Ball
   layers:
   - Default
   - TransparentFX

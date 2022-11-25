@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4166801801191349095}
   m_Layer: 8
   m_Name: Ball (1)
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,6 +151,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onHitWithTransform:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!50 &4166801801191349092
 Rigidbody2D:
   serializedVersion: 4
@@ -235,10 +238,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6f019dd8fb88047b68b6351c13bf14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _doors: []
   baseColor: {r: 0.4811321, g: 0, b: 0.4712392, a: 1}
   flashColor: {r: 1, g: 0, b: 0.85468817, a: 1}
   flashDuration: 3
-  _doors: []
 --- !u!210 &4166801801301821076
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -267,7 +270,7 @@ GameObject:
   - component: {fileID: 4166801801344477585}
   m_Layer: 8
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -401,6 +404,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onHitWithTransform:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!50 &4166801801344477598
 Rigidbody2D:
   serializedVersion: 4

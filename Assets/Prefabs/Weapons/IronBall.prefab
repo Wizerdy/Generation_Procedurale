@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7019878425220584391}
   - component: {fileID: 7019878425220584390}
   - component: {fileID: 7019878425220584389}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: IronBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

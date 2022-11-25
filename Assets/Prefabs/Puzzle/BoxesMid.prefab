@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2907973597956273478}
   m_Layer: 8
   m_Name: Boxe (1)
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,6 +122,9 @@ MonoBehaviour:
   onHit:
     m_PersistentCalls:
       m_Calls: []
+  onHitWithTransform:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2907973597956273476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +203,7 @@ GameObject:
   - component: {fileID: 2907973598196580677}
   m_Layer: 8
   m_Name: Boxe
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -303,6 +306,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onHit:
+    m_PersistentCalls:
+      m_Calls: []
+  onHitWithTransform:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &2907973598196580681
@@ -444,7 +450,7 @@ GameObject:
   - component: {fileID: 2907973599521251357}
   m_Layer: 8
   m_Name: Boxe (2)
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -549,6 +555,9 @@ MonoBehaviour:
   onHit:
     m_PersistentCalls:
       m_Calls: []
+  onHitWithTransform:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2907973599521251355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,7 +636,7 @@ GameObject:
   - component: {fileID: 2199545793802812536}
   m_Layer: 8
   m_Name: Boxe (3)
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -730,6 +739,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onHit:
+    m_PersistentCalls:
+      m_Calls: []
+  onHitWithTransform:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &5834126161214850242

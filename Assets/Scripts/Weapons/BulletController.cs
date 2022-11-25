@@ -5,7 +5,9 @@ public class BulletController : MonoBehaviour
     public WeaponType type;
     private Rigidbody2DMovement movement;
     private SpriteRenderer spriteRenderer;
-
+    [SerializeField] private Sprite bullet;
+    [SerializeField] private Sprite thunder;
+    [SerializeField] private Sprite iron;
     private void Awake() {
         movement = GetComponent<Rigidbody2DMovement>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -19,14 +21,14 @@ public class BulletController : MonoBehaviour
         type = _type;
         switch (type) {
             case WeaponType.ThunderBall:
-                spriteRenderer.color = Color.yellow;
+                spriteRenderer.sprite = thunder;
                 break;
             case WeaponType.IronBall:
-                spriteRenderer.color = Color.gray;
+                spriteRenderer.sprite = iron;
 
                 break;
             case WeaponType.Arrow:
-                spriteRenderer.color = Color.red;
+                spriteRenderer.sprite = bullet;
 
                 break;
             default:
